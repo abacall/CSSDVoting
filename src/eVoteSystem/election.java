@@ -9,7 +9,7 @@ public class election {
 	private electoralRoll voters;
 	private ArrayList<standing> candidates;
 	private votingSystem voteSystem;
-	private ArrayList<administor> administrators;
+	private ArrayList<administrator> administrators;
 	public Date startTime;
 	public Date endTime;
 	
