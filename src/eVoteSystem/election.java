@@ -18,25 +18,66 @@ public class election {
 		
 	}
 	
+	/**
+	 * Returns an ArrayList of the entities standing in this election. 
+	 *
+	 * @return      the candidates standing for election
+	 */
 	public ArrayList<standing> returnCandidates()
-	{}
+	{
+		return candidates;
+	}
 	
+	/**
+	 * Returns a string with an error message. 
+	 *
+	 * @return      error message
+	 */
 	public String returnError()
-	{}
+	{
+		return null;
+	}
 	
-	public boolean validateUser()
-	{}
+	/**
+	 * Checks that a voter both exists and has not already voted.
+	 *
+	 */
+	public boolean validateUser(String voterID)
+	{
+		return voters.checkVoter(voterID);
+	}
 	
+	/**
+	 * Casts a vote for a standing party. 
+	 *      
+	 */
 	public boolean castVote()
-	{}
+	{
+		return false;
+	}
 	
+	/**
+	 * Logs a voter into the system. 
+	 *
+	 */
 	public void login()
 	{}
 	
+	/**
+	 * Logs an administrator into the system.
+	 *
+	 */
 	public void adminLogin()
 	{}
 	
+	/**
+	 * Returns the number of votes cast.
+	 *
+	 * @return      the number of votes cast
+	 */
 	public int getVoteCount()
-	{}
+	{
+		return 0;
+	}
 	
 }

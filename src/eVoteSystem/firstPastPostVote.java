@@ -2,7 +2,7 @@ package eVoteSystem;
 import java.util.List;
 import java.util.ArrayList;
 
-public class firstPastPostVote {
+public class firstPastPostVote implements votingSystem{
 	
 	private List<voter> voteCount;
 	
@@ -10,8 +10,16 @@ public class firstPastPostVote {
 		voteCount = new ArrayList<voter>();
 	}
 	
-	public boolean castVote(candidate cand) {
+
+	@Override
+	public boolean castVote(standing cand) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void getVotes() {
+		// TODO Auto-generated method stub
 		
-		return true;
 	}
 }
