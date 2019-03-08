@@ -2,7 +2,7 @@ package eVoteSystem;
 import java.util.HashMap;
 import java.util.Map;
 
-public class voter {
+public class Voter {
 	
 	private String voterId;
 	private String firstName;
@@ -12,7 +12,7 @@ public class voter {
 	private boolean hasVoted;
 	
 	// Constructor for the class, all voter information is passed through as parameters
-	public voter(String vI, String fN, String lN, String pC, String dOB) {
+	public Voter(String vI, String fN, String lN, String pC, String dOB) {
 		voterId = vI;
 		firstName = fN;
 		lastName = lN;

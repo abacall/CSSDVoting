@@ -1,10 +1,10 @@
 package eVoteSystem;
 
-public class party {
+public class Party {
 	
 	private String partyName;
 	
-	public party(String partyName) {
+	public Party(String partyName) {
 		this.partyName = partyName;
 	}
 	

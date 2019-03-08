@@ -1,13 +1,13 @@
 package eVoteSystem;
 
-public class candidate {
+public class Candidate {
 	
 	private String candidateId;
 	private String firstName;
 	private String lastName;
-	private party candidateParty;
+	private Party candidateParty;
 	
-	public candidate(String cId, String fN, String lN, party cParty) {
+	public Candidate(String cId, String fN, String lN, Party cParty) {
 		candidateId = cId;
 		firstName = fN;
 		lastName = lN;
@@ -26,7 +26,7 @@ public class candidate {
 		return lastName;
 	}
 	
-	public party getCandParty() {
+	public Party getCandParty() {
 		return candidateParty;
 	}
 }
