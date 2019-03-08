@@ -2,17 +2,17 @@ package eVoteSystem;
 import java.util.List;
 import java.util.ArrayList;
 
-public class firstPastPostVote implements votingSystem{
+public class FirstPastPost implements VotingSystem{
 	
-	private List<voter> voteCount;
+	private List<Voter> voteCount;
 	
-	public firstPastPostVote() {
-		voteCount = new ArrayList<voter>();
+	public FirstPastPost() {
+		voteCount = new ArrayList<Voter>();
 	}
 	
 
 	@Override
-	public boolean castVote(standing cand) {
+	public boolean castVote(Standing cand) {
 		// TODO Auto-generated method stub
 		return false;
 	}

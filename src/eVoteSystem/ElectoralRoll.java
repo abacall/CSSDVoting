@@ -2,12 +2,12 @@ package eVoteSystem;
 
 import java.util.List;
 
-public class electoralRoll {
+public class ElectoralRoll {
 
-	private List<voter> voters;
+	private List<Voter> voters;
 	
 	// Voters are passed through the constructor to create this class
-	public electoralRoll(List<voter> allVoters) {
+	public ElectoralRoll(List<Voter> allVoters) {
 		voters = allVoters;
 	}
 	
@@ -32,7 +32,7 @@ public class electoralRoll {
 	}
 	
 	// Checks if the user exists but hasn't yet voted, given a voterId, returns true if yes
-	public boolean checkVoter(String firstName, String lastName, String doB, String postcode) {
-		return false;
+	public Voter checkVoter(String firstName, String lastName, String doB, String postcode) {
+		return null;
 	}
 }

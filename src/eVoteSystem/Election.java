@@ -3,17 +3,18 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class election {
+public class Election {
 
 	private String electionID;
-	private electoralRoll voters;
-	private ArrayList<standing> candidates;
-	private votingSystem voteSystem;
-	private ArrayList<administrator> administrators;
+	private ElectoralRoll voters;
+	private ArrayList<Standing> candidates;
+	private VotingSystem voteSystem;
+	private ArrayList<Administrator> administrators;
+	private Voter loggedInVoter;
 	public Date startTime;
 	public Date endTime;
 	
-	public election()
+	public Election()
 	{
 		
 	}
@@ -23,7 +24,7 @@ public class election {
 	 *
 	 * @return      the candidates standing for election
 	 */
-	public ArrayList<standing> returnCandidates()
+	public ArrayList<Standing> returnCandidates()
 	{
 		return candidates;
 	}
@@ -44,35 +45,53 @@ public class election {
 	 */
 	public boolean validateUser(String firstName, String lastName,String DoB , String postcode)
 	{
-		return voters.checkVoter(firstName, lastName, DoB, postcode);
+		return voters.checkVoter(firstName, lastName, DoB, postcode) != null;
 	}
 	
 	/**
 	 * Casts a vote for a standing party. 
-	 *      
+	 * 
+	 * @return 		true for success, false for failure     
 	 */
-	public boolean castVote()
+	public boolean castVote(Standing candidate)
 	{
-		return false;
+		 if( voteSystem.castVote(candidate))
+		 {
+			 loggedInVoter = null;
+			 return true;
+		 } else {
+			 return false;
+		 }
+		 
 	}
 	
 	/**
 	 * Logs a voter into the system. 
 	 *
+	 * @return 		true for success, false for failure   
 	 */
 	public boolean login(String firstName, String lastName, String DoB, String postcode)
 	{
 		
-		return voters.checkVoter(firstName, lastName, DoB, postcode);
+		Voter temp = voters.checkVoter(firstName, lastName, DoB, postcode);
+		
+		if(temp != null)
+		{
+			loggedInVoter = temp;
+			return true;
+		}
+		
+		return false;
 	}
 	
 	/**
 	 * Logs an administrator into the system.
 	 *
+	 * @return 		true for success, false for failure   
 	 */
 	public boolean adminLogin(String username, String password)
 	{
-		for(administrator current : administrators)
+		for(Administrator current : administrators)
 		{
 			if(current.getUserName().equals(username))
 				return current.validateUser(username, password);
@@ -90,6 +109,16 @@ public class election {
 	public int getVoteCount()
 	{
 		return 0;
+	}
+	
+	/**
+	 * Returns the currently logged in user.
+	 *
+	 * @return      voter that is logged in or null if none
+	 */
+	public Voter getLoggedInUser()
+	{
+		return loggedInVoter;
 	}
 	
 }
