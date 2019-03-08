@@ -25,4 +25,9 @@ public class administrator {
 	public void logAdministratorAction(String action) {
 		actionLog.add(action);
 	}
+	
+	public String getUserName()
+	{
+		return userName;
+	}
 }

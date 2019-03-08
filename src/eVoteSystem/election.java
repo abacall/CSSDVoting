@@ -60,15 +60,25 @@ public class election {
 	 * Logs a voter into the system. 
 	 *
 	 */
-	public void login()
-	{}
+	public boolean login(String firstName, String lastName, String DoB, String postcode)
+	{
+		
+		return voters.checkVoter(firstName, lastName, DoB, postcode);
+	}
 	
 	/**
 	 * Logs an administrator into the system.
 	 *
 	 */
-	public void adminLogin()
-	{}
+	public void adminLogin(String username, String password)
+	{
+		for(administrator current : administrators)
+		{
+			if(current.getUserName().equals(username))
+				current.validateUser(username, password);
+			
+		}
+	}
 	
 	/**
 	 * Returns the number of votes cast.
