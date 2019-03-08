@@ -32,10 +32,7 @@ public class electoralRoll {
 	}
 	
 	// Checks if the user exists but hasn't yet voted, given a voterId, returns true if yes
-	public boolean checkVoter(String voterId) {
-		if (voterExists(voterId) && !voterHasVoted(voterId)) {
-			return true;
-		}
+	public boolean checkVoter(String firstName, String lastName, String doB, String postcode) {
 		return false;
 	}
 }

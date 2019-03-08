@@ -42,9 +42,9 @@ public class election {
 	 * Checks that a voter both exists and has not already voted.
 	 *
 	 */
-	public boolean validateUser(String voterID)
+	public boolean validateUser(String firstName, String lastName,String DoB , String postcode)
 	{
-		return voters.checkVoter(voterID);
+		return voters.checkVoter(firstName, lastName, DoB, postcode);
 	}
 	
 	/**
@@ -70,14 +70,16 @@ public class election {
 	 * Logs an administrator into the system.
 	 *
 	 */
-	public void adminLogin(String username, String password)
+	public boolean adminLogin(String username, String password)
 	{
 		for(administrator current : administrators)
 		{
 			if(current.getUserName().equals(username))
-				current.validateUser(username, password);
+				return current.validateUser(username, password);
 			
 		}
+		
+		return false;
 	}
 	
 	/**
