@@ -120,5 +120,14 @@ public class Election {
 	{
 		return loggedInVoter;
 	}
+
+	/**
+	 * @return the electionID
+	 */
+	public String getElectionID() 
+	{
+		return electionID;
+	}
+
 	
 }
