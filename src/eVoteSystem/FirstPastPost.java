@@ -1,25 +1,55 @@
 package eVoteSystem;
 import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class FirstPastPost implements VotingSystem{
+public class FirstPastPost implements VotingSystem {
 	
-	private List<Voter> voteCount;
+	private Map<Standing, List<Integer>> voteCount;
 	
-	public FirstPastPost() {
-		voteCount = new ArrayList<Voter>();
+	/**
+	 * Constructor. Inititates the voting storage HashMap and adds all the current candidates to it.
+	 * Each candidate should have a list assigned to them, this list will only store one value, a 0
+	 * to indicate they have not received any votes yet.
+	 */
+	public FirstPastPost(List<Standing> candidates) {
+		// Inititiates the storage (map) for the candidates and their votes
+		voteCount = new HashMap<Standing, List<Integer>>();
+		// Adds all candidates to the map
+		for (int i = 0; i < candidates.size(); i++) {
+			List<Integer> voteList = new ArrayList<Integer>();
+			voteList.set(0, 0);
+			voteCount.put(candidates.get(i), voteList);
+		}
 	}
 	
-
-	@Override
+	/**
+	 * Casts a new vote into the system, adding it to the HashMap.
+	 *
+	 * @return      whether or not casting the vote was successful.
+	 */
 	public boolean castVote(Standing cand) {
-		// TODO Auto-generated method stub
-		return false;
+		Integer currentVotes = voteCount.get(cand).get(0);
+		List<Integer> tempArray = new ArrayList<Integer>();
+		tempArray.set(0, (currentVotes+1));
+		voteCount.put(cand, tempArray);
+		return true;
 	}
 
+	/**
+	 * Returns a list containing the votes for a given candidate.
+	 *
+	 * @return      list of integers containing one value, the vote count for the given candidate.
+	 */
 	@Override
-	public void getVotes() {
-		// TODO Auto-generated method stub
-		
+	public List<Integer> getVotes(Standing cand) {
+		// Checks that the candidate exists within the HashMap
+		// Returns an empty list if not
+		if (voteCount.containsKey(cand)) {
+			return voteCount.get(cand);
+		} else {
+			return new ArrayList<Integer>();
+		}
 	}
 }
