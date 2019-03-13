@@ -1,38 +1,71 @@
 package eVoteSystem;
 
 import java.util.List;
+import java.util.Map;
 
 public class ElectoralRoll {
 
 	private List<Voter> voters;
 	
-	// Voters are passed through the constructor to create this class
+	/**
+	 * Voters are passed through the constructor to initiate the voter list
+	 */
 	public ElectoralRoll(List<Voter> allVoters) {
 		voters = allVoters;
 	}
 	
-	// Checks if a voter exists, given a voterId, returning true if yes
-	public boolean voterExists(String voterId) {
-		for (int i = 0; i < voters.size(); i++) {
-			if (voters.get(i).getVoterDetails().get(voterId) != null) {
-				return true;
-			}
+	/**
+	 * Checks if a voter exists given details about the voter.
+	 *
+	 * @return      true if the user exists and false otherwise, based upon provided voter information.
+	 */
+	public boolean voterExists(String firstName, String lastName, String doB, String postcode) {
+		if (getVoter(firstName, lastName, doB, postcode) != null) {
+			return true;
 		}
 		return false;
 	}
 	
-	// Checks if a user has voted, given a voterId, returning true if yes
-	public boolean voterHasVoted(String voterId) {
-		for (int i = 0; i < voters.size(); i++) {
-			if (voters.get(i).getVoterDetails().get(voterId) != null) {
-				return voters.get(i).checkVoted();
-			}
+	/**
+	 * Checks if a voter has voted in the current election.
+	 *
+	 * @return      true if the user has voted and false otherwise, using provided voter information to identify the voter.
+	 */
+	public boolean voterHasVoted(String firstName, String lastName, String doB, String postcode) {
+		Voter voter = getVoter(firstName, lastName, doB, postcode);
+		if (voter != null) {
+			return voter.checkVoted();
 		}
 		return false;
 	}
 	
-	// Checks if the user exists but hasn't yet voted, given a voterId, returns true if yes
-	public Voter checkVoter(String firstName, String lastName, String doB, String postcode) {
+	/**
+	 * Returns a voter given details about said voter.
+	 *
+	 * @return      voter if the information provided can be verified as existing, else returns null
+	 */
+	public Voter getVoter(String firstName, String lastName, String doB, String postcode) {
+		for (int i = 0; i < voters.size(); i++) {
+			Map<String, String> voterDetails = voters.get(i).getVoterDetails();
+			if (voterDetails.get("FirstName") == firstName &&
+				voterDetails.get("LastName") == lastName &&
+				voterDetails.get("PostCode") == postcode &&
+				voterDetails.get("DateOfBirth") == doB) {
+				return voters.get(i);
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Checks whether a voter exists and has not yet voted.
+	 *
+	 * @return      true if the voter exists and hasn't yet voted, false otherwise
+	 */
+	public Voter checkVoter(String fN, String lN, String doB, String pC) {
+		if (voterExists(fN, lN, doB, pC) && !voterHasVoted(fN, lN, doB, pC)) {
+			return getVoter(fN, lN, doB, pC);
+		}
 		return null;
 	}
 }
