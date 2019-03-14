@@ -34,15 +34,27 @@ public class HelloWorld extends Application {
 	@Override
     public void start(Stage primaryStage) throws Exception {
 
-		
-		FXMLLoader loader = new FXMLLoader(new File("C:\\Users\\PCofAwesomeness2\\Eclipse\\MyJavaFXProject\\select_election.fxml").toURI().toURL());
+
+		FXMLLoader loader = new FXMLLoader(new File("Page_Election_Selection_1.fxml").toURI().toURL());
 		Parent root = loader.load();
-		
-		
+
+
         // Create the Scene
         Scene scene = new Scene(root);
+
+        //scene.getStylesheets().add(getClass().getResource("theme.css").toExternalForm());
+        //scene.getStylesheets().add(getClass().getResource("theme.css").toExternalForm());
+
+        URL url = this.getClass().getResource("theme.css");
+        if (url != null) {
+            String css = url.toExternalForm();
+            scene.getStylesheets().add(css);
+        }
+
+
         // Set the Scene to the Stage
         primaryStage.setScene(scene);
+        // Skin with with the CSS
         // Set the Title to the Stage
         primaryStage.setTitle("CSSD");
         // Display the Stage

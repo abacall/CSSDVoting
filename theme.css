@@ -1,0 +1,46 @@
+/*
+    Document   : theme.css
+*/
+@import url("colours.css");
+
+/*
+-colour-background)
+-colour-text)
+-colour-accent1)
+-colour-accent2)
+-colour-background-element)
+-colour-dark)
+*/
+
+#bgPane {
+	-fx-background-color:-colour-background;
+}
+
+#confirmButton {
+
+
+}
+
+
+*:focused {
+    -fx-border-color: #d71ef7;
+		-fx-background-color: red;
+}
+
+.button1{
+    -fx-text-fill: -colour-text;
+    -fx-background-color: -colour-accent2;
+		-fx-border-color: -colour-border;
+		-fx-opacity:1;
+}
+
+.button2{
+    -fx-text-fill: -colour-text;
+    -fx-background-color: -colour-accent1;
+		-fx-opacity:1;
+}
+
+.label{
+	-fx-text-fill: -colour-text;
+
+}
