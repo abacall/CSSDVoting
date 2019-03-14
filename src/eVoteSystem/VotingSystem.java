@@ -1,9 +1,7 @@
 package eVoteSystem;
+import java.util.List;
 
 public interface VotingSystem {
 	
-	public int voteCount = 0;
-	
-	public boolean castVote(Standing cand);
-	public void getVotes();
+	public List<Integer> getVotes(Standing cand);
 }
