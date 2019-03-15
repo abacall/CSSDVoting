@@ -1,6 +1,7 @@
 package eVoteSystem;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class Election {
@@ -13,6 +14,7 @@ public class Election {
 	private Voter loggedInVoter;
 	public Date startTime;
 	public Date endTime;
+	public String errorMessage;
 	
 	public Election()
 	{
@@ -30,22 +32,30 @@ public class Election {
 	}
 	
 	/**
-	 * Returns a string with an error message. 
+	 * Returns a string with an error message. To be called after a function 
+	 * returns false/null in order to provide additional information. 
 	 *
-	 * @return      error message
+	 * @return      string with error message
 	 */
 	public String returnError()
 	{
-		return null;
+		return errorMessage;
 	}
 	
 	/**
 	 * Checks that a voter both exists and has not already voted.
 	 *
+	 *@return		true if user can be validated, false if not
 	 */
 	public boolean validateUser(String firstName, String lastName,String DoB , String postcode)
 	{
-		return voters.checkVoter(firstName, lastName, DoB, postcode) != null;
+		if(voters.checkVoter(firstName, lastName, DoB, postcode) != null)
+		{
+			return true;
+		} else {
+			errorMessage = "Failed to validate user.";
+			return false;
+		}
 	}
 	
 	/**
@@ -60,6 +70,7 @@ public class Election {
 			 loggedInVoter = null;
 			 return true;
 		 } else {
+			 errorMessage = "Failed to cast vote.";
 			 return false;
 		 }
 		 
@@ -97,18 +108,19 @@ public class Election {
 				return current.validateUser(username, password);
 			
 		}
-		
+		errorMessage = "Failed to validate administrator.";
 		return false;
 	}
 	
 	/**
 	 * Returns the number of votes cast.
+	 * @return 
 	 *
 	 * @return      the number of votes cast
 	 */
-	public int getVoteCount()
+	public List<Integer> getVoteCount(Standing cand)
 	{
-		return 0;
+		return voteSystem.getVotes(cand);
 	}
 	
 	/**

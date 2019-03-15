@@ -6,7 +6,7 @@ public class Administrator {
 	
 	private String userName;
 	private String password;
-	private List actionLog;
+	private ArrayList<String> actionLog;
 	
 	public Administrator(String uN, String pass) {
 		userName = uN;
@@ -15,7 +15,10 @@ public class Administrator {
 	}
 	
 	public boolean validateUser(String uN, String pass) {
-		return true;
+		if((uN.equals(userName))&&(pass.equals(password)))
+			return true;
+		else
+			return false;
 	}
 	
 	public void setup() {
