@@ -9,7 +9,7 @@ public class Election {
 	private String electionID;
 	private String electionName;
 	private ElectoralRoll voters;
-	private ArrayList<Standing> candidates;
+	private ArrayList<BallotItem> candidates;
 	private VotingSystem voteSystem;
 	private ArrayList<Administrator> administrators;
 	private Voter loggedInVoter;
@@ -22,7 +22,7 @@ public class Election {
 	 * Constructor for Election 
 	 *
 	 */
-	public Election(String electionID, String electionName, ArrayList<Standing> candidates, VotingSystem voteSystem, Date startTime, Date endTime)
+	public Election(String electionID, String electionName, ArrayList<BallotItem> candidates, VotingSystem voteSystem, Date startTime, Date endTime)
 	{
 		this.electionName = electionName;
 		this.electionID = electionID;
@@ -45,7 +45,7 @@ public class Election {
 	 *
 	 * @return      the candidates standing for election
 	 */
-	public ArrayList<Standing> returnCandidates()
+	public ArrayList<BallotItem> returnCandidates()
 	{
 		return candidates;
 	}
@@ -82,7 +82,7 @@ public class Election {
 	 * 
 	 * @return 		true for success, false for failure     
 	 */
-	public boolean castVote(Standing candidate)
+	public boolean castVote(BallotItem candidate)
 	{
 		 if( voteSystem.castVote(candidate))
 		 {
@@ -137,7 +137,7 @@ public class Election {
 	 *
 	 * @return      the number of votes cast
 	 */
-	public List<Integer> getVoteCount(Standing cand)
+	public List<Integer> getVoteCount(BallotItem cand)
 	{
 		return voteSystem.getVotes(cand);
 	}

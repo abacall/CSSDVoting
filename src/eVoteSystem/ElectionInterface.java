@@ -35,7 +35,7 @@ public class ElectionInterface {
 		
 	}
 	
-	public void createElection(String electionID, String electionName, ArrayList<Standing> candidates, VotingSystem voteSystem, Date startTime, Date endTime)
+	public void createElection(String electionID, String electionName, ArrayList<BallotItem> candidates, VotingSystem voteSystem, Date startTime, Date endTime)
 	{
 		Election newElection = new Election( electionID,  electionName, candidates,  voteSystem,  startTime,  endTime);
 		elections.add(newElection);
