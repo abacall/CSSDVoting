@@ -38,6 +38,12 @@
     -fx-text-fill: -colour-text;
     -fx-background-color: -colour-accent1;
 		-fx-opacity:1;
+		-fx-border-color: -colour-border;
+}
+
+.grid{
+
+
 }
 
 .label{
