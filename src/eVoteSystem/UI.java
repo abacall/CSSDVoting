@@ -1,3 +1,4 @@
+package eVoteSystem;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,7 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
-public class HelloWorld extends Application {
+public class UI extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
