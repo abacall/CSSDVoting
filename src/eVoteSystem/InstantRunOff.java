@@ -7,7 +7,7 @@ import java.util.List;
 
 public class InstantRunOff  extends VotingSystem {
 	
-	private Map<Standing, List<Integer>> voteCount;
+	private Map<BallotItem, List<Integer>> voteCount;
 	
 	/**
 	 * Constructor. Initiates the voting storage HashMap and adds all the current candidates to it.
@@ -16,9 +16,9 @@ public class InstantRunOff  extends VotingSystem {
 	 * indicates lowest preference. The values are incremented as people select that candidate for
 	 * that specific preference. 
 	 */
-	public InstantRunOff(List<Standing> candidates, Integer noOfPreferences) {
+	public InstantRunOff(List<BallotItem> candidates, Integer noOfPreferences) {
 		// Initiates the storage (map) for the candidates and their votes
-		voteCount = new HashMap<Standing, List<Integer>>();
+		voteCount = new HashMap<BallotItem, List<Integer>>();
 		// Adds all candidates to the map
 		for (int i = 0; i < candidates.size(); i++) {
 			List<Integer> prefList = initPreferenceList(noOfPreferences);
@@ -31,7 +31,7 @@ public class InstantRunOff  extends VotingSystem {
 	 *
 	 * @return      whether or not casting the vote was successful.
 	 */
-	public boolean castVote(Standing cand, List<Integer> votes) {
+	public boolean castVote(BallotItem cand, List<Integer> votes) {
 		List<Integer> tempList = voteCount.get(cand);
 		// If a invalid preference list has been given, return failure
 		if (tempList.size() == votes.size()) {
@@ -51,7 +51,7 @@ public class InstantRunOff  extends VotingSystem {
 	 * @return      list of integers containing preferences for candidate.
 	 */
 	@Override
-	public List<Integer> getVotes(Standing cand) {
+	public List<Integer> getVotes(BallotItem cand) {
 		// Checks that the candidate exists within the HashMap
 		// Returns an empty list if not
 		if (voteCount.containsKey(cand)) {
