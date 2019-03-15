@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class FirstPastPost implements VotingSystem {
+public class FirstPastPost extends VotingSystem {
 	
 	private Map<Standing, List<Integer>> voteCount;
 	
@@ -42,7 +42,6 @@ public class FirstPastPost implements VotingSystem {
 	 *
 	 * @return      list of integers containing one value, the vote count for the given candidate.
 	 */
-	@Override
 	public List<Integer> getVotes(Standing cand) {
 		// Checks that the candidate exists within the HashMap
 		// Returns an empty list if not

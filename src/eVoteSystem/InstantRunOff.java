@@ -5,19 +5,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class InstantRunOff  implements VotingSystem {
+public class InstantRunOff  extends VotingSystem {
 	
 	private Map<Standing, List<Integer>> voteCount;
 	
 	/**
-	 * Constructor. Inititates the voting storage HashMap and adds all the current candidates to it.
+	 * Constructor. Initiates the voting storage HashMap and adds all the current candidates to it.
 	 * The list of preferences for 5 preferences should look like: 0 0 0 0 0
 	 * where the left most side indicates top preference and the value on the right most side
 	 * indicates lowest preference. The values are incremented as people select that candidate for
 	 * that specific preference. 
 	 */
 	public InstantRunOff(List<Standing> candidates, Integer noOfPreferences) {
-		// Inititiates the storage (map) for the candidates and their votes
+		// Initiates the storage (map) for the candidates and their votes
 		voteCount = new HashMap<Standing, List<Integer>>();
 		// Adds all candidates to the map
 		for (int i = 0; i < candidates.size(); i++) {
