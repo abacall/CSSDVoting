@@ -16,9 +16,13 @@ public class Election {
 	public Date endTime;
 	public String errorMessage;
 	
-	public Election()
+	public Election(String electionID, ArrayList<Standing> candidates, VotingSystem voteSystem, Date startTime, Date endTime)
 	{
-		
+		this.electionID = electionID;
+		this.candidates = candidates;
+		this.voteSystem = voteSystem; 
+		this.startTime = startTime;
+		this.endTime = endTime;
 	}
 	
 	/**
