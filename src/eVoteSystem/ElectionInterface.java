@@ -1,10 +1,10 @@
 package eVoteSystem;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class ElectionInterface {
-	List<Administrator> admins;
-	List<Election> elections;
+	private ArrayList<Election> elections;
 	
 	/**
 	 * Returns the Election object associated with an ID
@@ -22,6 +22,23 @@ public class ElectionInterface {
 		return null;
 	}
 	
+	public ArrayList<String> getElectionNames()
+	{
+		ArrayList<String> returnNames = new ArrayList<>();
+		
+		for(Election item : elections)
+		{
+			returnNames.add(item.getName());
+		}
+		
+		return returnNames;
+		
+	}
 	
+	public void createElection(String electionID, String electionName, ArrayList<Standing> candidates, VotingSystem voteSystem, Date startTime, Date endTime)
+	{
+		Election newElection = new Election( electionID,  electionName, candidates,  voteSystem,  startTime,  endTime);
+		elections.add(newElection);
+	}
 	
 }

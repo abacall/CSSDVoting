@@ -7,6 +7,7 @@ import java.util.List;
 public class Election {
 
 	private String electionID;
+	private String electionName;
 	private ElectoralRoll voters;
 	private ArrayList<Standing> candidates;
 	private VotingSystem voteSystem;
@@ -16,14 +17,28 @@ public class Election {
 	public Date endTime;
 	public String errorMessage;
 	
-	public Election(String electionID, ArrayList<Standing> candidates, VotingSystem voteSystem, Date startTime, Date endTime)
+
+	/**
+	 * Constructor for Election 
+	 *
+	 */
+	public Election(String electionID, String electionName, ArrayList<Standing> candidates, VotingSystem voteSystem, Date startTime, Date endTime)
 	{
+		this.electionName = electionName;
 		this.electionID = electionID;
 		this.candidates = candidates;
 		this.voteSystem = voteSystem; 
 		this.startTime = startTime;
 		this.endTime = endTime;
 	}
+	
+	/**
+	 * Returns the name of the election. 
+	 *
+	 * @return      the name of the election
+	 */
+	public String getName()
+	{return electionName;}
 	
 	/**
 	 * Returns an ArrayList of the entities standing in this election. 
