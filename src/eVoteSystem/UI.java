@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.net.URL;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
@@ -21,6 +23,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -33,34 +36,40 @@ public class UI extends Application {
 	}
 
 	@Override
-    public void start(Stage primaryStage) throws Exception {
-
+	public void start(Stage primaryStage) throws Exception {
 
 		FXMLLoader loader = new FXMLLoader(new File("Page_Election_Selection_1.fxml").toURI().toURL());
 		Parent root = loader.load();
 
+		// Create the Scene
+		Scene scene = new Scene(root);
 
-        // Create the Scene
-        Scene scene = new Scene(root);
+		// scene.getStylesheets().add(getClass().getResource("theme.css").toExternalForm());
+		// scene.getStylesheets().add(getClass().getResource("theme.css").toExternalForm());
 
-        //scene.getStylesheets().add(getClass().getResource("theme.css").toExternalForm());
-        //scene.getStylesheets().add(getClass().getResource("theme.css").toExternalForm());
+		URL url = this.getClass().getResource("theme.css");
+		if (url != null) {
+			String css = url.toExternalForm();
+			scene.getStylesheets().add(css);
+		}
 
-        URL url = this.getClass().getResource("theme.css");
-        if (url != null) {
-            String css = url.toExternalForm();
-            scene.getStylesheets().add(css);
-        }
+		// Set the Scene to the Stage
+		primaryStage.setScene(scene);
+		// Skin with with the CSS
+		// Set the Title to the Stage
+		primaryStage.setTitle("CSSD");
 
+		addSampleListItems(scene);
+		// Display the Stage
+		primaryStage.show();
 
-        // Set the Scene to the Stage
-        primaryStage.setScene(scene);
-        // Skin with with the CSS
-        // Set the Title to the Stage
-        primaryStage.setTitle("CSSD");
-        // Display the Stage
-        primaryStage.show();
+	}
 
-    }
+	public void addSampleListItems(Scene scene) {
+		ObservableList<String> items = FXCollections.observableArrayList("A", "B", "C", "D");
+		@SuppressWarnings("unchecked")
+		ListView<String> list = (ListView<String>) scene.lookup("#listView");
+		list.setItems(items);
+	}
 
 }
