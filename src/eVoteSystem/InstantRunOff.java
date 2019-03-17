@@ -46,6 +46,23 @@ public class InstantRunOff  extends VotingSystem {
 	}
 	
 	/**
+	 * More simple function used for casting a preference vote. Increases
+	 * the number of a targeted preference by 1.
+	 *
+	 * @return      whether or not the casting of the vote was successful.
+	 */
+	public boolean castPreference(BallotItem cand, Integer prefIndex) {
+		List<Integer> tempList = getVotes(cand);
+		Integer valToIncrease = tempList.get(prefIndex);
+		tempList.set(prefIndex, (valToIncrease + 1));
+		if (castVote(cand, tempList) == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
 	 * Returns a list containing the preference votes for a given candidate.
 	 *
 	 * @return      list of integers containing preferences for candidate.
