@@ -1,6 +1,6 @@
 package eVoteSystem;
 
-public class Candidate {
+public class Candidate extends BallotItem {
 	
 	private String candidateId;
 	private String firstName;
