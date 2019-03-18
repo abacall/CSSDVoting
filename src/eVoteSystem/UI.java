@@ -24,7 +24,8 @@ public class UI extends Application {
 		elections = new ArrayList<>();
 		
 		try {
-			elections.add(DataHandler.generateSampleData());
+			elections.add(DataHandler.generateSampleDataFirstPastPost());
+			elections.add(DataHandler.generateSampleDataInstantRunOff());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

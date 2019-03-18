@@ -1,10 +1,11 @@
 package eVoteSystem;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 
-public class Election {
+public class Election implements Serializable{
 
 	private String electionID;
 	private String electionName;
