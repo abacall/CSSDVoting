@@ -41,4 +41,10 @@ public class ElectionInterface {
 		elections.add(newElection);
 	}
 	
+	public void addElection(Election e)
+	{
+		elections.add(e);
+	}
+	
+	
 }
