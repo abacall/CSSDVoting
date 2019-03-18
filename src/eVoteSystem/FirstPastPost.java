@@ -9,7 +9,7 @@ public class FirstPastPost extends VotingSystem {
 	private Map<BallotItem, List<Integer>> voteCount;
 	
 	/**
-	 * Constructor. Inititates the voting storage HashMap and adds all the current candidates to it.
+	 * Constructor. Initiates the voting storage HashMap and adds all the current candidates to it.
 	 * Each candidate should have a list assigned to them, this list will only store one value, a 0
 	 * to indicate they have not received any votes yet.
 	 */
