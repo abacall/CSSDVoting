@@ -67,7 +67,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label id="selected_Lbl" layoutX="37.0" layoutY="11.0" text="User">
+                  <Label id="selected_Lbl" fx:id="currrentUserLabel" layoutX="37.0" layoutY="11.0" text="User">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -82,7 +82,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label id="selected_Lbl" text="Election 1 ">
+                  <Label id="selected_Lbl" fx:id="currentElectionLabel" text="Election 1 ">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -96,17 +96,17 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label id="selected_Lbl" layoutX="230.0" layoutY="11.0" text="NUMBER.">
+                  <Label id="selected_Lbl" layoutX="230.0" layoutY="11.0" text="X">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label id="selected_Lbl" text="   ">
+                  <Label id="selected_Lbl" text=" options.">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label id="selected_Lbl" text="You have selected ">
+                  <Label id="selected_Lbl" text="  You have selected ">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -136,12 +136,12 @@
          </children>
       </GridPane>
       <ListView fx:id="listView" layoutX="156.0" layoutY="236.0" maxHeight="420.0" prefHeight="420.0" prefWidth="969.0" style="-fx-background-color: gray; -fx-border-color: black;" AnchorPane.topAnchor="190.0" />
-      <Button id="confirmButton" layoutX="496.0" layoutY="618.0" mnemonicParsing="false" styleClass="button1" text="Confirm Vote">
+      <Button id="confirmButton" fx:id="confirmButton" layoutX="496.0" layoutY="618.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" styleClass="button1" text="Confirm Vote">
          <font>
             <Font size="40.0" />
          </font>
       </Button>
-      <Button id="confirmButton" layoutX="1068.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="198.0" styleClass="button1" text="Logout" textAlignment="CENTER">
+      <Button id="confirmButton" fx:id="logoutButton" layoutX="1068.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="28.0" prefWidth="198.0" styleClass="button1" text="Logout" textAlignment="CENTER">
          <font>
             <Font size="32.0" />
          </font>

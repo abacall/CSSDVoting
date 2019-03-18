@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.scene.*;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -18,19 +19,19 @@ import javafx.scene.control.ListView;
 public class UI extends Application {
 
 	static ArrayList<Election> elections;
-	
+
 	public static void main(String[] args) {
-		
+
 		elections = new ArrayList<>();
-		
+
 		try {
 			elections.add(DataHandler.generateSampleData());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		launch(args);
-		
+
 	}
 
 	@Override
@@ -63,8 +64,9 @@ public class UI extends Application {
 
 	}
 
+
 	public void addListItems(Scene scene) {
-		
+
 		ObservableList<String> items = FXCollections.observableArrayList(getElectionNames());
 		@SuppressWarnings("unchecked")
 		ListView<String> list = (ListView<String>) scene.lookup("#listView");
@@ -74,14 +76,14 @@ public class UI extends Application {
 	private ArrayList<String> getElectionNames()
 	{
 		ArrayList<String> temp = new ArrayList<>();
-		
+
 		for(Election item : elections)
 		{
 			temp.add(item.getName());
 		}
-		
+
 		return temp;
-		
+
 	}
-	
+
 }
