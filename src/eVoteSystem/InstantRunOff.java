@@ -26,47 +26,27 @@ public class InstantRunOff  extends VotingSystem {
 		numOfPreferences = noOfPreferences;
 	}
 	
-	public int getNumPreferences()
-	{return numOfPreferences;}
+	public int getNumPreferences(){return numOfPreferences;}
 	
 	/**
-	 * Casts a new vote into the system, adding it to the HashMap.
-	 *
-	 * @return      whether or not casting the vote was successful.
-	 */
-	private boolean setVote(BallotItem cand, List<Integer> votes) {
-		List<Integer> tempList = voteCount.get(cand);
-		// If a invalid preference list has been given, return failure
-		if (tempList.size() == votes.size()) {
-			// Adds the preferences given to the function with the existing values.
-			for (int i = 0; i < votes.size(); i++) {
-				tempList.set(i, tempList.get(i) + votes.get(i));
-			}
-			
-			// Replaces the current preference list with the new preference list
-            voteCount.replace(cand, votes);
-			
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	/**
-	 * More simple function used for casting a preference vote. Increases
+	 * Cast a preference vote. Increases
 	 * the number of a targeted preference by 1.
 	 *
 	 * @return      whether or not the casting of the vote was successful.
 	 */
 	public boolean castVote(BallotItem cand, Integer prefIndex) {
+		
 		List<Integer> tempList = getVotes(cand);
-		Integer valToIncrease = tempList.get(prefIndex);
-		tempList.set(prefIndex, (valToIncrease + 1));
-		if (setVote(cand, tempList) == true) {
+		
+		if((tempList != null) && (prefIndex <= numOfPreferences))
+		{
+			int incrementedValue = tempList.get(prefIndex) + 1;
+			tempList.set(prefIndex, incrementedValue);
 			return true;
-		} else {
-			return false;
 		}
+		
+		return false;
+		
 	}
 	
 	/**
@@ -81,7 +61,7 @@ public class InstantRunOff  extends VotingSystem {
 		if (voteCount.containsKey(cand)) {
 			return voteCount.get(cand);
 		} else {
-			return new ArrayList<Integer>();
+			return null;
 		}
 	}
 	
