@@ -1,6 +1,7 @@
 package eVoteSystem;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -30,4 +31,22 @@ public class PageConfirmationController4 {
 
     }
 
+	public void initManager(SystemManager systemManager) {
+		confirmButton.setOnAction(new EventHandler<ActionEvent>() {
+		      @Override public void handle(ActionEvent event) {
+		        String sessionID = "yes";
+		        if (sessionID != null) {
+		        	systemManager.showPageCompleted5();
+		        }
+		      }
+		    });
+		logoutButton.setOnAction(new EventHandler<ActionEvent>() {
+		      @Override public void handle(ActionEvent event) {
+		        String sessionID = "yes";
+		        if (sessionID != null) {
+		        	systemManager.showPageElection1();
+		        }
+		      }
+		    });
+	}
 }

@@ -1,5 +1,7 @@
 package eVoteSystem;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,4 +21,14 @@ public class PageCompletedController5 {
     @FXML
     private Label currrentUserLabel;
 
+	public void initManager(SystemManager systemManager) {
+		logoutButton.setOnAction(new EventHandler<ActionEvent>() {
+		      @Override public void handle(ActionEvent event) {
+		        String sessionID = "yes";
+		        if (sessionID != null) {
+		        	systemManager.showPageElection1();
+		        }
+		      }
+		    });
+	}
 }
