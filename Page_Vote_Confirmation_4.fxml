@@ -7,13 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bgPane" fx:id="Page_Vote_Confirmation_4" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="bgPane" fx:id="Page_Vote_Confirmation_4" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eVoteSystem.PageConfirmationController4">
    <children>
-      <GridPane id="stepper_gridpane" alignment="CENTER" layoutX="269.0" layoutY="43.0" prefHeight="16.0" prefWidth="745.0" style="-fx-background-color: grey;" styleClass="grid" AnchorPane.leftAnchor="269.0" AnchorPane.rightAnchor="266.0" AnchorPane.topAnchor="43.0">
+      <GridPane id="stepper_gridpane" alignment="CENTER" layoutX="269.0" layoutY="43.0" prefHeight="16.0" prefWidth="745.0" style="-fx-background-color: grey;" styleClass="grid" AnchorPane.leftAnchor="269.0" AnchorPane.rightAnchor="266.0" AnchorPane.topAnchor="30.0">
         <columnConstraints>
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" />
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" />
@@ -52,62 +51,31 @@
             </Button>
          </children>
       </GridPane>
-      <GridPane alignment="CENTER" layoutX="156.0" layoutY="97.0" prefHeight="110.0" prefWidth="969.0" style="-fx-border-color: black; -fx-background-color: gray;">
-        <columnConstraints>
-          <ColumnConstraints />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <AnchorPane layoutX="139.0" layoutY="88.0" styleClass="component2">
          <children>
-            <HBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <children>
-                  <Label id="selected_Lbl" text="You have selected ">
-                     <font>
-                        <Font name="System Bold" size="40.0" />
-                     </font>
-                  </Label>
-                  <Label id="currently_Selectecd_Lbl" fx:id="currentSelectedOptions" text="0" underline="true">
-                     <font>
-                        <Font name="System Bold" size="40.0" />
-                     </font>
-                  </Label>
-                  <Label id="of_Lbl" text=" of ">
-                     <font>
-                        <Font name="System Bold" size="40.0" />
-                     </font>
-                  </Label>
-                  <Label id="max_Selectecd_Lbl" fx:id="totalOptions" text="0">
-                     <font>
-                        <Font name="System Bold" size="40.0" />
-                     </font>
-                  </Label>
-                  <Label id="of_Lbl" text=".">
-                     <font>
-                        <Font name="System Bold" size="40.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <Label alignment="CENTER" text="Please select the relevent election." underline="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <ListView fx:id="selectedVotesList" layoutX="19.0" layoutY="61.0" prefHeight="279.0" prefWidth="984.0" style="-fx-background-color: gray; -fx-border-color: black;" />
+            <Button id="confirmButton" fx:id="confirmButton" layoutX="290.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleConfirmButtonAction" prefHeight="100.0" prefWidth="420.0" styleClass="button1" text="Confirm">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Button>
+            <Button id="confirmButton" fx:id="logoutButton" layoutX="401.0" layoutY="502.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="28.0" prefWidth="198.0" styleClass="button1" text="Logout" textAlignment="CENTER">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Button>
+            <Label alignment="TOP_CENTER" prefHeight="100.0" prefWidth="1000.0" text="You have selected:" underline="true">
                <font>
                   <Font name="System Bold" size="58.0" />
                </font>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
                <padding>
                   <Insets bottom="4.0" top="4.0" />
                </padding>
             </Label>
          </children>
-      </GridPane>
-      <ListView fx:id="listView" layoutX="156.0" layoutY="236.0" prefHeight="369.0" prefWidth="969.0" style="-fx-background-color: gray; -fx-border-color: black;" />
-      <Button id="confirmButton" layoutX="543.0" layoutY="620.0" mnemonicParsing="false" styleClass="button1" text="Confirm">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Button>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </AnchorPane>
    </children>
 </AnchorPane>
