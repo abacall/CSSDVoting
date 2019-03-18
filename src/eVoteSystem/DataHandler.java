@@ -14,7 +14,7 @@ public class DataHandler {
 	public void loadData()
 	{}
 	
-	public Election generateSampleData() throws ParseException
+	public static Election generateSampleData() throws ParseException
 	{
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		String startDateStr = "01-01-2019";

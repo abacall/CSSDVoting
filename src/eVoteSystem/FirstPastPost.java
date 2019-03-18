@@ -19,7 +19,7 @@ public class FirstPastPost extends VotingSystem {
 		// Adds all candidates to the map
 		for (int i = 0; i < candidates.size(); i++) {
 			List<Integer> voteList = new ArrayList<Integer>();
-			voteList.set(0, 0);
+			voteList.add(0);
 			voteCount.put(candidates.get(i), voteList);
 		}
 	}
