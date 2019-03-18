@@ -6,7 +6,7 @@ import java.util.List;
 public class InstantRunOff  extends VotingSystem {
 	
 	private HashMap<BallotItem, List<Integer>> voteCount;
-	
+	private int numOfPreferences;
 	/**
 	 * Constructor. Initiates the voting storage HashMap and adds all the current candidates to it.
 	 * The list of preferences for 5 preferences should look like: 0 0 0 0 0
@@ -22,7 +22,12 @@ public class InstantRunOff  extends VotingSystem {
 			List<Integer> prefList = initPreferenceList(noOfPreferences);
 			voteCount.put(candidates.get(i), prefList);
 		}
+		
+		numOfPreferences = noOfPreferences;
 	}
+	
+	public int getNumPreferences()
+	{return numOfPreferences;}
 	
 	/**
 	 * Casts a new vote into the system, adding it to the HashMap.
