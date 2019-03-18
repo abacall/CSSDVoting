@@ -104,7 +104,7 @@
          </children>
       </GridPane>
       <ListView fx:id="electionsList" layoutX="156.0" layoutY="236.0" prefHeight="369.0" prefWidth="969.0" style="-fx-background-color: gray; -fx-border-color: black;" AnchorPane.topAnchor="190.0" />
-      <Button id="confirmButton" fx:id="confirmButton" layoutX="543.0" layoutY="620.0" mnemonicParsing="false" onAction="#handleConfirmButtonAction" styleClass="button1" text="Confirm" AnchorPane.bottomAnchor="15.0">
+      <Button id="confirmButton" fx:id="confirmButton" layoutX="543.0" layoutY="620.0" mnemonicParsing="false" styleClass="button1" text="Confirm" AnchorPane.bottomAnchor="15.0">
          <font>
             <Font size="40.0" />
          </font>
