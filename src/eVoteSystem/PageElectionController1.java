@@ -18,12 +18,13 @@ public class PageElectionController1 {
     private ListView<?> listView;
 
     @FXML
-    private Button button_confirm_page1;
+    private Button confirmButton;
 
     @FXML
-    void handleSubmitButtonAction(ActionEvent event) {
-    	button_confirm_page1.setText("clicked");
+    void handleConfirmButtonAction(ActionEvent event) {
+    	confirmButton.setText("clicked");
 
     }
 
 }
+

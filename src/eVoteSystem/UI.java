@@ -69,7 +69,7 @@ public class UI extends Application {
 
 		ObservableList<String> items = FXCollections.observableArrayList(getElectionNames());
 		@SuppressWarnings("unchecked")
-		ListView<String> list = (ListView<String>) scene.lookup("#listView");
+		ListView<String> list = (ListView<String>) scene.lookup("#electionsList");
 		list.setItems(items);
 	}
 
