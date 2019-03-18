@@ -78,14 +78,17 @@ public class Election {
 	}
 	
 	/**
-	 * Casts a vote for a standing party. 
+	 * Casts a vote for a standing party in first past post system 
 	 * 
 	 * @return 		true for success, false for failure     
 	 */
 	public boolean castVote(BallotItem candidate)
 	{
-		 if( voteSystem.castVote(candidate))
+		FirstPastPost temp = (FirstPastPost) voteSystem;
+		
+		 if( temp.castVote(candidate))
 		 {
+			 voteSystem = temp;
 			 loggedInVoter = null;
 			 return true;
 		 } else {
@@ -93,6 +96,27 @@ public class Election {
 			 return false;
 		 }
 		 
+	}
+	
+	/**
+	 * Casts a vote for a standing party in instant run off
+	 * 
+	 * @return 		true for success, false for failure     
+	 */
+	public boolean castVote(ArrayList<BallotItem> candidates)
+	{
+		InstantRunOff temp = (InstantRunOff) voteSystem;
+		
+		 for(int i = 0; i < candidates.size(); i++)
+		 {
+			 if (!temp.castVote(candidates.get(i), i))
+				 return false;
+			 
+		 }
+		
+		 voteSystem = temp;
+		 
+		 return true;
 	}
 	
 	/**

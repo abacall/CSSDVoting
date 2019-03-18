@@ -1,13 +1,11 @@
 package eVoteSystem;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class InstantRunOff  extends VotingSystem {
 	
-	private Map<BallotItem, List<Integer>> voteCount;
+	private HashMap<BallotItem, List<Integer>> voteCount;
 	
 	/**
 	 * Constructor. Initiates the voting storage HashMap and adds all the current candidates to it.
@@ -31,7 +29,7 @@ public class InstantRunOff  extends VotingSystem {
 	 *
 	 * @return      whether or not casting the vote was successful.
 	 */
-	public boolean castVote(BallotItem cand, List<Integer> votes) {
+	private boolean setVote(BallotItem cand, List<Integer> votes) {
 		List<Integer> tempList = voteCount.get(cand);
 		// If a invalid preference list has been given, return failure
 		if (tempList.size() == votes.size()) {
@@ -39,6 +37,10 @@ public class InstantRunOff  extends VotingSystem {
 			for (int i = 0; i < votes.size(); i++) {
 				tempList.set(i, tempList.get(i) + votes.get(i));
 			}
+			
+			// Replaces the current preference list with the new preference list
+            voteCount.replace(cand, votes);
+			
 			return true;
 		} else {
 			return false;
@@ -51,11 +53,11 @@ public class InstantRunOff  extends VotingSystem {
 	 *
 	 * @return      whether or not the casting of the vote was successful.
 	 */
-	public boolean castPreference(BallotItem cand, Integer prefIndex) {
+	public boolean castVote(BallotItem cand, Integer prefIndex) {
 		List<Integer> tempList = getVotes(cand);
 		Integer valToIncrease = tempList.get(prefIndex);
 		tempList.set(prefIndex, (valToIncrease + 1));
-		if (castVote(cand, tempList) == true) {
+		if (setVote(cand, tempList) == true) {
 			return true;
 		} else {
 			return false;
@@ -79,7 +81,7 @@ public class InstantRunOff  extends VotingSystem {
 	}
 	
 	/**
-	 * Inititates a new list of preferences for when the HashMap is being first created in the constructor.
+	 * Initiates a new list of preferences for when the HashMap is being first created in the constructor.
 	 *
 	 * @return      list of integers, set to a specified size, where every integer is 0.
 	 */
