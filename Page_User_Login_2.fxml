@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bgPane" fx:id="Page_User_Login_2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="bgPane" fx:id="Page_User_Login_2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eVoteSystem.PageLoginController">
    <children>
       <GridPane id="stepper_gridpane" alignment="CENTER" layoutX="269.0" layoutY="43.0" prefHeight="16.0" prefWidth="745.0" style="-fx-background-color: grey;" styleClass="grid" AnchorPane.leftAnchor="269.0" AnchorPane.rightAnchor="266.0" AnchorPane.topAnchor="30.0">
         <columnConstraints>
@@ -109,7 +109,7 @@
                         <Image url="@pencil_icon.png" />
                      </image>
                   </ImageView>
-                  <TextField alignment="CENTER" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1">
+                  <TextField fx:id="forenameText" alignment="CENTER" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <font>
                         <Font size="32.0" />
                      </font>
@@ -142,7 +142,7 @@
                         <Image url="@pencil_icon.png" />
                      </image>
                   </ImageView>
-                  <TextField alignment="CENTER" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1">
+                  <TextField fx:id="surnameText" alignment="CENTER" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <font>
                         <Font size="32.0" />
                      </font>
@@ -172,7 +172,7 @@
                         <Image url="@pencil_icon.png" />
                      </image>
                   </ImageView>
-                  <DatePicker editable="false" prefHeight="59.0" prefWidth="640.0" GridPane.columnIndex="1" />
+                  <DatePicker fx:id="dobPicker" editable="false" prefHeight="59.0" prefWidth="640.0" GridPane.columnIndex="1" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -198,7 +198,7 @@
                         <Image url="@pencil_icon.png" />
                      </image>
                   </ImageView>
-                  <TextField alignment="CENTER" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1">
+                  <TextField fx:id="postcodeText" alignment="CENTER" minWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <font>
                         <Font size="32.0" />
                      </font>
@@ -213,12 +213,12 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <Button id="confirmButton" layoutX="541.0" layoutY="635.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="198.0" styleClass="button1" text="Login" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0">
+      <Button id="confirmButton" fx:id="confirmButton" layoutX="541.0" layoutY="635.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="28.0" prefWidth="198.0" styleClass="button1" text="Login" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0">
          <font>
             <Font size="32.0" />
          </font>
       </Button>
-      <Button id="confirmButton" layoutX="1068.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="198.0" styleClass="button1" text="Logout" textAlignment="CENTER">
+      <Button id="confirmButton" fx:id="logoutButton" layoutX="1068.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="28.0" prefWidth="198.0" styleClass="button1" text="Logout" textAlignment="CENTER">
          <font>
             <Font size="32.0" />
          </font>

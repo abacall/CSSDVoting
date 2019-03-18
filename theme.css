@@ -39,7 +39,7 @@
 .component1{
     -fx-text-fill: -colour-text;
 		-fx-font-size: 32px;
-		-fx-font: System;
+		-fx-font-family: 'System';
     -fx-background-color: -colour-accent2;
 		-fx-border-color: -colour-border;
 		-fx-opacity:1;

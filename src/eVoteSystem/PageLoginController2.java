@@ -16,7 +16,7 @@ public class PageLoginController2 {
     private TextField forenameText;
 
     @FXML
-    private TextField SurnameText;
+    private TextField surnameText;
 
     @FXML
     private DatePicker dobPicker;
