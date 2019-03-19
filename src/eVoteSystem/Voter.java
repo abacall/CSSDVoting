@@ -18,6 +18,7 @@ public class Voter {
 		lastName = lN;
 		postCode = pC;
 		dateOfBirth = dOB;
+		hasVoted = false;
 	}
 	
 	// Returns a map containing the details of the voter
@@ -30,6 +31,10 @@ public class Voter {
 		map.put("PostCode", postCode);
 		map.put("DateOfBirth", dateOfBirth);
 		return map;
+	}
+	
+	public void setVoted(boolean voted) {
+		hasVoted = voted;
 	}
 	
 	// Returns if the user has voted yet or not
