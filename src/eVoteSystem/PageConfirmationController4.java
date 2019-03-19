@@ -1,5 +1,7 @@
 package eVoteSystem;
 
+import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,7 +16,7 @@ public class PageConfirmationController4 {
     private AnchorPane Page_Vote_Confirmation_4;
 
     @FXML
-    private ListView<BallotItem> selectedVotesList;
+    private ListView<String> selectedVotesList;
 
     @FXML
     private Button confirmButton;
@@ -34,7 +36,8 @@ public class PageConfirmationController4 {
 
 	public void initManager(SystemManager systemManager) {
 		
-		selectedVotesList.setItems(FXCollections.observableArrayList(systemManager.selectedCandidates));
+		selectedVotesList.setItems(FXCollections.observableArrayList(getCandidateNames(systemManager.selectedCandidates)));
+		
 		
 		confirmButton.setOnAction(new EventHandler<ActionEvent>() {
 		      @Override public void handle(ActionEvent event) {
@@ -61,4 +64,17 @@ public class PageConfirmationController4 {
 		      }
 		    });
 	}
+	
+	private ArrayList<String> getCandidateNames(ArrayList<BallotItem> candidates)
+	{
+		ArrayList<String> temp = new ArrayList<>();
+
+		for(BallotItem item : candidates)
+		{
+			temp.add(item.getName());
+		}
+
+		return temp;
+	}
+	
 }

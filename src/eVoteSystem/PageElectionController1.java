@@ -31,7 +31,7 @@ public class PageElectionController1 {
     private Label totalOptions;
 
     @FXML
-    private ListView<Election> electionsList;
+    private ListView<String> electionsList;
 
     @FXML
     private Button confirmButton;
@@ -47,7 +47,8 @@ public class PageElectionController1 {
 		      @Override public void handle(ActionEvent event) {
 		        String sessionID = "yes";
 		        if (sessionID != null) {
-		        	systemManager.selectedElection = electionsList.getSelectionModel().getSelectedItem();
+		        	String electionName = electionsList.getSelectionModel().getSelectedItem();
+		        	systemManager.selectedElection = getElection(electionName);
 		        	systemManager.showPageLogin2();
 		        }
 		      }
@@ -65,7 +66,7 @@ public class PageElectionController1 {
 		}
 		
 		
-		electionsList.setItems(FXCollections.observableArrayList(systemManager.elections));
+		electionsList.setItems(FXCollections.observableArrayList(getElectionNames()));
 		
 	}
 	
@@ -79,6 +80,17 @@ public class PageElectionController1 {
 		}
 
 		return temp;
+	}
+	
+	private Election getElection(String name)
+	{
+		for(Election item : systemManager.elections)
+		{
+			if (item.getName().equalsIgnoreCase(name))
+				return item;
+		}
+		
+		return null;
 	}
 
 }
