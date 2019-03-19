@@ -19,18 +19,10 @@ import javafx.scene.layout.StackPane;
 
 public class UI extends Application {
 
-	static ArrayList<Election> elections;
 
 	public static void main(String[] args) {
 
-		elections = new ArrayList<>();
-
-		try {
-			elections.add(DataHandler.generateSampleDataFirstPastPost());
-			elections.add(DataHandler.generateSampleDataInstantRunOff());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		
 
 		launch(args);
 
@@ -76,26 +68,5 @@ public class UI extends Application {
 
 	}
 
-
-	public void addListItems(Scene scene) {
-
-		ObservableList<String> items = FXCollections.observableArrayList(getElectionNames());
-		@SuppressWarnings("unchecked")
-		ListView<String> list = (ListView<String>) scene.lookup("#electionsList");
-		list.setItems(items);
-	}
-
-	private ArrayList<String> getElectionNames()
-	{
-		ArrayList<String> temp = new ArrayList<>();
-
-		for(Election item : elections)
-		{
-			temp.add(item.getName());
-		}
-
-		return temp;
-
-	}
 
 }

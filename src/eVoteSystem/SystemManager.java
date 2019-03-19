@@ -2,6 +2,7 @@ package eVoteSystem;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.sun.javafx.logging.Logger;
 
@@ -12,8 +13,13 @@ import javafx.scene.Scene;
 public class SystemManager {
 	  private Scene scene;
 
+	  public ArrayList<Election> elections;
+	  public Election selectedElection;
+	  public ArrayList<BallotItem> selectedCandidates;
 
 	  public SystemManager(Scene scene) {
+		  elections = new ArrayList<>();
+		  selectedCandidates = new ArrayList<>();
 		    this.scene = scene;
 		  }
 
@@ -102,5 +108,23 @@ public class SystemManager {
 		    }
 		  }
 
+	  public void showPageAdmin() {
+		    try {
+		      FXMLLoader loader = new FXMLLoader(
+		        new File("Page_Admin_Panel.fxml").toURI().toURL()
+		      );
+		      scene.setRoot((Parent) loader.load());
+		      PageAdminController controller =
+		        loader.<PageAdminController>getController();
+
+		      controller.initManager(this);
+
+		    } catch (IOException ex) {
+		    }
+		  }
+
+	  public boolean validateThingie(String firstName, String lastName, String DoB, String postcode){
+		 return this.selectedElection.validateUser(firstName, lastName, DoB, postcode);
+	  }
 
 	}

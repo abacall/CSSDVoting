@@ -29,4 +29,9 @@ public class Candidate extends BallotItem {
 	public Party getCandParty() {
 		return candidateParty;
 	}
+	
+	public String getName()
+	{
+		return firstName + " " + lastName;
+	}
 }

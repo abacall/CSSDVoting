@@ -1,5 +1,8 @@
 package eVoteSystem;
 
+import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,7 +16,7 @@ public class PageConfirmationController4 {
     private AnchorPane Page_Vote_Confirmation_4;
 
     @FXML
-    private ListView<?> selectedVotesList;
+    private ListView<String> selectedVotesList;
 
     @FXML
     private Button confirmButton;
@@ -32,10 +35,21 @@ public class PageConfirmationController4 {
     }
 
 	public void initManager(SystemManager systemManager) {
+		
+		selectedVotesList.setItems(FXCollections.observableArrayList(getCandidateNames(systemManager.selectedCandidates)));
+		
+		
 		confirmButton.setOnAction(new EventHandler<ActionEvent>() {
 		      @Override public void handle(ActionEvent event) {
 		        String sessionID = "yes";
 		        if (sessionID != null) {
+		        	
+		        	for(BallotItem item : systemManager.selectedCandidates)
+		        		systemManager.selectedElection.castVote(item);
+		        	
+		        	systemManager.selectedElection = null;
+		        	systemManager.selectedCandidates.clear();
+		        	
 		        	systemManager.showPageCompleted5();
 		        }
 		      }
@@ -44,9 +58,23 @@ public class PageConfirmationController4 {
 		      @Override public void handle(ActionEvent event) {
 		        String sessionID = "yes";
 		        if (sessionID != null) {
+		        	systemManager.selectedElection = null;
 		        	systemManager.showPageElection1();
 		        }
 		      }
 		    });
 	}
+	
+	private ArrayList<String> getCandidateNames(ArrayList<BallotItem> candidates)
+	{
+		ArrayList<String> temp = new ArrayList<>();
+
+		for(BallotItem item : candidates)
+		{
+			temp.add(item.getName());
+		}
+
+		return temp;
+	}
+	
 }

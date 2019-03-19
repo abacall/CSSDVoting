@@ -23,7 +23,7 @@ public class Election implements Serializable{
 	 * Constructor for Election 
 	 *
 	 */
-	public Election(String electionID, String electionName, ArrayList<BallotItem> candidates, VotingSystem voteSystem, Date startTime, Date endTime)
+	public Election(String electionID, String electionName, ArrayList<BallotItem> candidates, VotingSystem voteSystem, Date startTime, Date endTime, ElectoralRoll voters)
 	{
 		this.electionName = electionName;
 		this.electionID = electionID;
@@ -31,6 +31,7 @@ public class Election implements Serializable{
 		this.voteSystem = voteSystem; 
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.voters = voters;
 	}
 	
 	/**
@@ -184,6 +185,9 @@ public class Election implements Serializable{
 	{
 		return electionID;
 	}
+	
+	public List<BallotItem> getBallotItems()
+	{return candidates;}
 
 	
 }

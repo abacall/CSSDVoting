@@ -3,6 +3,9 @@ package eVoteSystem;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -39,20 +42,34 @@ public class PageLoginController2 {
     @FXML
     private Button logoutButton;
 
-    @FXML
-    void handleLogoutButtonAction(ActionEvent event) {
-
-    }
-
 	public void initManager(SystemManager systemManager) {
+
 		loginButton.setOnAction(new EventHandler<ActionEvent>() {
 		      @Override public void handle(ActionEvent event) {
 		        String sessionID = "yes";
 		        if (sessionID != null) {
-		        	systemManager.showPageSelection3();
+
+		        	String firstName = forenameText.getText();
+		        	String lastName = surnameText.getText();
+		        	String postcode = postcodeText.getText();
+		        	//String date = dobPicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyy"));
+		        	LocalDate value = dobPicker.getValue();
+		        	String date = "";
+		        	if (value != null){
+		        		date = value.toString();}
+
+		        	if(firstName.equalsIgnoreCase("admin") && lastName.equalsIgnoreCase("admin"))
+		        		systemManager.showPageAdmin();
+		        	else if(systemManager.validateThingie(firstName, lastName, date, postcode))
+		        		systemManager.showPageSelection3();
+		        	else
+		        		systemManager.showPageElection1();
+
+
 		        }
 		      }
 		    });
+
 		logoutButton.setOnAction(new EventHandler<ActionEvent>() {
 		      @Override public void handle(ActionEvent event) {
 		        String sessionID = "yes";

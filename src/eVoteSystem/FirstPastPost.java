@@ -38,8 +38,8 @@ public class FirstPastPost extends VotingSystem {
 			return true;
 		} else {
 			return false;
-		}
-	}
+	  }
+  }
 
 	/**
 	 * Returns a list containing the votes for a given candidate.

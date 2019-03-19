@@ -11,4 +11,6 @@ public class BallotItem {
 	public String getLogo() {
 		return logo;
 	}
+	
+	public String getName() {return "";}
 }

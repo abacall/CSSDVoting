@@ -11,4 +11,6 @@ public class Party extends BallotItem {
 	public String getPartyName() {
 		return partyName;
 	}
+	
+	public String getName() {return partyName;}
 }
