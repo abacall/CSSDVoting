@@ -16,7 +16,7 @@ public class SystemManager {
 	  public ArrayList<Election> elections;
 	  public Election selectedElection;
 	  public ArrayList<BallotItem> selectedCandidates;
-	  
+
 	  public SystemManager(Scene scene) {
 		  elections = new ArrayList<>();
 		  selectedCandidates = new ArrayList<>();
@@ -114,8 +114,8 @@ public class SystemManager {
 		        new File("Page_Admin_Panel.fxml").toURI().toURL()
 		      );
 		      scene.setRoot((Parent) loader.load());
-		      PageCompletedController5 controller =
-		        loader.<PageCompletedController5>getController();
+		      PageAdminController controller =
+		        loader.<PageAdminController>getController();
 
 		      controller.initManager(this);
 
@@ -123,5 +123,8 @@ public class SystemManager {
 		    }
 		  }
 
+	  public boolean validateThingie(String firstName, String lastName, String DoB, String postcode){
+		 return this.selectedElection.validateUser(firstName, lastName, DoB, postcode);
+	  }
 
 	}
