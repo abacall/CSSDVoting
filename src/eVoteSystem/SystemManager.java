@@ -108,5 +108,20 @@ public class SystemManager {
 		    }
 		  }
 
+	  public void showPageAdmin() {
+		    try {
+		      FXMLLoader loader = new FXMLLoader(
+		        new File("Page_Admin_Panel.fxml").toURI().toURL()
+		      );
+		      scene.setRoot((Parent) loader.load());
+		      PageCompletedController5 controller =
+		        loader.<PageCompletedController5>getController();
+
+		      controller.initManager(this);
+
+		    } catch (IOException ex) {
+		    }
+		  }
+
 
 	}
