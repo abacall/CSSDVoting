@@ -30,11 +30,15 @@ public class FirstPastPost extends VotingSystem {
 	 * @return      whether or not casting the vote was successful.
 	 */
 	public boolean castVote(BallotItem cand) {
-		Integer currentVotes = voteCount.get(cand).get(0);
-		List<Integer> tempArray = new ArrayList<Integer>();
-		tempArray.set(0, (currentVotes+1));
-		voteCount.put(cand, tempArray);
-		return true;
+		if (voteCount.containsKey(cand)) {
+			Integer currentVotes = voteCount.get(cand).get(0);
+			List<Integer> tempArray = new ArrayList<Integer>();
+			tempArray.add(currentVotes+1);
+			voteCount.put(cand, tempArray);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -48,7 +52,7 @@ public class FirstPastPost extends VotingSystem {
 		if (voteCount.containsKey(cand)) {
 			return voteCount.get(cand);
 		} else {
-			return new ArrayList<Integer>();
+			return null;
 		}
 	}
 }
