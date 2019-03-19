@@ -10,14 +10,14 @@ public class AdministratorTests {
 	// Low level administrator affirmations 
 	
 	@Test
-	public void administratorConstruction() {
+	public void administratorConstructionTest() {
 		Administrator admin = new Administrator("JSmith1999", "newPass");
 		// Check admin has been set up correctly
 		assertEquals(admin.getUserName(), "JSmith1999");
 	}
 	
 	@Test
-	public void administratorValidation() {
+	public void administratorValidationTest() {
 		Administrator admin = new Administrator("JSmith1999", "newPass");
 		// Test that validate user does not work with incorrect password
 		assertFalse(admin.validateUser("JSmith1999", "wrongPass"));

@@ -11,7 +11,7 @@ public class VoterTests {
 	// Low level voter affirmations 
 	
 	@Test
-	public void voterGetters() {
+	public void voterGettersTest() {
 		Voter voter = new Voter("1", "John", "Smith", "xx xxx", "01/01/1999");
 		Map<String, String> voterDetails = voter.getVoterDetails();
 		// Check that all the information has been set for the voter correctly
@@ -23,7 +23,7 @@ public class VoterTests {
 	}
 
 	@Test
-	public void voterVotes() {
+	public void voterVotesTest() {
 		Voter voter = new Voter("1", "John", "Smith", "xx xxx", "01/01/1999");
 		// Check that voter defaults to not yet voted
 		assertFalse(voter.checkVoted());
