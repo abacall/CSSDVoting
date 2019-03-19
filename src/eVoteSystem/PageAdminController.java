@@ -1,5 +1,8 @@
 package eVoteSystem;
 
+import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,7 +17,7 @@ public class PageAdminController {
 	    private Label electionNameLabel;
 
 	    @FXML
-	    private ListView<?> adminListView;
+	    private ListView<String> adminListView;
 
 	    @FXML
 	    private Label totalVotesLabel;
@@ -32,6 +35,10 @@ public class PageAdminController {
 	    private Button loginButton;
 
 	public void initManager(SystemManager systemManager) {
+		
+		usernameText = new TextField();
+		passwordText = new TextField();
+		
 		logoutButton.setOnAction(new EventHandler<ActionEvent>() {
 		      @Override public void handle(ActionEvent event) {
 		        String sessionID = "yes";
@@ -48,6 +55,24 @@ public class PageAdminController {
 //		        	systemManager.showPageElection1();
 		        	String username = passwordText.getText();
 		        	String password = usernameText.getText();
+		        	
+		        	if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin"))
+		        	{
+		        			ArrayList<String> voteText = new ArrayList<>(); 
+		        		
+		        			for(BallotItem item : systemManager.selectedElection.returnCandidates())
+		        			{
+		        				String name = item.getName();
+		        				int count = systemManager.selectedElection.getVoteCount(item).get(0);
+		        				
+		        				voteText.add(name + " : " + count);
+		        			}
+		        			
+		        			adminListView.setItems(FXCollections.observableArrayList(voteText));
+		        	}
+		        	
+		        	
+		        	
 		        }
 		      }
 		    });
