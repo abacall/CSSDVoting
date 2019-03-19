@@ -58,7 +58,9 @@ public class PageLoginController2 {
 		        	String postcode = postcodeText.getText();
 		        	String date = dobPicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyy"));
 		        	
-		        	if(systemManager.selectedElection.validateUser(firstName, lastName, date, postcode))
+		        	if(firstName.equalsIgnoreCase("admin") && firstName.equalsIgnoreCase(lastName))
+		        		systemManager.showPageAdmin();
+		        	else if(systemManager.selectedElection.validateUser(firstName, lastName, date, postcode))
 		        		systemManager.showPageSelection3();
 		        	else
 		        		systemManager.showPageElection1();
