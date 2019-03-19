@@ -68,7 +68,7 @@
                   <Font name="System Bold" size="32.0" />
                </font>
             </Label>
-            <TextField fx:id="SurnameText" alignment="CENTER" minWidth="100.0" prefHeight="69.0" prefWidth="449.0">
+            <TextField fx:id="passwordText" alignment="CENTER" minWidth="100.0" prefHeight="69.0" prefWidth="449.0">
                <font>
                   <Font size="32.0" />
                </font>
@@ -85,7 +85,7 @@
                   <Font name="System Bold" size="32.0" />
                </font>
             </Label>
-            <TextField fx:id="forenameText" alignment="CENTER" minWidth="100.0" prefHeight="69.0" prefWidth="435.0">
+            <TextField fx:id="usernameText" alignment="CENTER" minWidth="100.0" prefHeight="69.0" prefWidth="435.0">
                <font>
                   <Font size="32.0" />
                </font>
