@@ -36,9 +36,6 @@ public class PageAdminController {
 
 	public void initManager(SystemManager systemManager) {
 		
-		usernameText = new TextField();
-		passwordText = new TextField();
-		
 		logoutButton.setOnAction(new EventHandler<ActionEvent>() {
 		      @Override public void handle(ActionEvent event) {
 		        String sessionID = "yes";
@@ -67,7 +64,7 @@ public class PageAdminController {
 		        				
 		        				voteText.add(name + " : " + count);
 		        			}
-		        			
+
 		        			adminListView.setItems(FXCollections.observableArrayList(voteText));
 		        	}
 		        	
