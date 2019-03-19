@@ -136,12 +136,12 @@
          </children>
       </GridPane>
       <ListView fx:id="ballotList" layoutX="156.0" layoutY="236.0" maxHeight="420.0" prefHeight="420.0" prefWidth="969.0" style="-fx-background-color: gray; -fx-border-color: black;" AnchorPane.topAnchor="190.0" />
-      <Button id="confirmButton" fx:id="confirmButton" layoutX="496.0" layoutY="618.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" styleClass="button1" text="Confirm Vote">
+      <Button id="confirmButton" fx:id="confirmButton" layoutX="496.0" layoutY="618.0" mnemonicParsing="false" styleClass="button1" text="Confirm Vote">
          <font>
             <Font size="40.0" />
          </font>
       </Button>
-      <Button id="confirmButton" fx:id="logoutButton" layoutX="1068.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="28.0" prefWidth="198.0" styleClass="button1" text="Logout" textAlignment="CENTER">
+      <Button id="confirmButton" fx:id="logoutButton" layoutX="1068.0" layoutY="14.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="198.0" styleClass="button1" text="Logout" textAlignment="CENTER">
          <font>
             <Font size="32.0" />
          </font>
