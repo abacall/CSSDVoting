@@ -31,7 +31,7 @@ public class FirstPastPost extends VotingSystem {
 	 */
 	public boolean castVote(BallotItem cand) {
 		Integer currentVotes = voteCount.get(cand).get(0);
-		List<Integer> tempArray = new ArrayList<Integer>();
+		List<Integer> tempArray = voteCount.get(cand);
 		tempArray.set(0, (currentVotes+1));
 		voteCount.put(cand, tempArray);
 		return true;

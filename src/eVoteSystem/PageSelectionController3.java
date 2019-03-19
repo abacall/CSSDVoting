@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -37,7 +38,7 @@ public class PageSelectionController3 {
     private Label totalOptions2;
 
     @FXML
-    private ListView<?> ballotList;
+    private ListView<BallotItem> ballotList;
 
     @FXML
     private Button confirmButton;
@@ -71,6 +72,9 @@ public class PageSelectionController3 {
 		      @Override public void handle(ActionEvent event) {
 		        String sessionID = "yes";
 		        if (sessionID != null) {
+		        	
+		        	systemManager.selectedCandidates.add(ballotList.getSelectionModel().getSelectedItem());
+		        	
 		        	systemManager.showPageConfirmation4();
 		        }
 		      }
@@ -79,10 +83,14 @@ public class PageSelectionController3 {
 		      @Override public void handle(ActionEvent event) {
 		        String sessionID = "yes";
 		        if (sessionID != null) {
+		        	systemManager.selectedElection = null;
 		        	systemManager.showPageElection1();
 		        }
 		      }
 		    });
+		
+		ballotList.setItems(FXCollections.observableArrayList(systemManager.selectedElection.getBallotItems()));
+		
 	}
 
 }

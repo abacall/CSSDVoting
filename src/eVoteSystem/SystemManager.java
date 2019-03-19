@@ -2,6 +2,7 @@ package eVoteSystem;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.sun.javafx.logging.Logger;
 
@@ -12,8 +13,13 @@ import javafx.scene.Scene;
 public class SystemManager {
 	  private Scene scene;
 
-
+	  public ArrayList<Election> elections;
+	  public Election selectedElection;
+	  public ArrayList<BallotItem> selectedCandidates;
+	  
 	  public SystemManager(Scene scene) {
+		  elections = new ArrayList<>();
+		  selectedCandidates = new ArrayList<>();
 		    this.scene = scene;
 		  }
 

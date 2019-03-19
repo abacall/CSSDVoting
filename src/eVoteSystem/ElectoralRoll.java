@@ -47,10 +47,10 @@ public class ElectoralRoll {
 	public Voter getVoter(String firstName, String lastName, String doB, String postcode) {
 		for (int i = 0; i < voters.size(); i++) {
 			Map<String, String> voterDetails = voters.get(i).getVoterDetails();
-			if (voterDetails.get("FirstName") == firstName &&
-				voterDetails.get("LastName") == lastName &&
-				voterDetails.get("PostCode") == postcode &&
-				voterDetails.get("DateOfBirth") == doB) {
+			if (voterDetails.get("FirstName").equalsIgnoreCase(firstName) &&
+				voterDetails.get("LastName").equalsIgnoreCase(lastName)&&
+				voterDetails.get("PostCode").equalsIgnoreCase(postcode) &&
+				voterDetails.get("DateOfBirth").equalsIgnoreCase(doB)) {
 				return voters.get(i);
 			}
 		}

@@ -26,6 +26,7 @@ public class PageCompletedController5 {
 		      @Override public void handle(ActionEvent event) {
 		        String sessionID = "yes";
 		        if (sessionID != null) {
+		        	systemManager.selectedElection = null;
 		        	systemManager.showPageElection1();
 		        }
 		      }
