@@ -68,7 +68,7 @@ public class Election implements Serializable{
 	 *
 	 *@return		true if user can be validated, false if not
 	 */
-	public boolean validateUser(String firstName, String lastName,String DoB , String postcode)
+	public boolean validateUser(String firstName, String lastName, String DoB , String postcode)
 	{
 		if(voters.checkVoter(firstName, lastName, DoB, postcode) != null)
 		{
@@ -88,9 +88,15 @@ public class Election implements Serializable{
 	{
 		FirstPastPost temp = (FirstPastPost) voteSystem;
 		
-		 if( temp.castVote(candidate))
-		 {
+		if (loggedInVoter != null && loggedInVoter.checkVoted()) {
+			errorMessage = "Voter has already voted.";
+			return false;
+		} else if (loggedInVoter == null) {
+			errorMessage = "A voter has yet to log in";
+			return false;
+		} else if (temp.castVote(candidate)) {
 			 voteSystem = temp;
+			 loggedInVoter.setVoted(true);
 			 loggedInVoter = null;
 			 return true;
 		 } else {
@@ -109,6 +115,14 @@ public class Election implements Serializable{
 	{
 		InstantRunOff temp = (InstantRunOff) voteSystem;
 		
+		if (loggedInVoter != null && loggedInVoter.checkVoted()) {
+			errorMessage = "Voter has already voted.";
+			return false;
+		} else if (loggedInVoter == null) {
+			errorMessage = "A voter has yet to log in";
+			return false;
+		} 
+		
 		 for(int i = 0; i < candidates.size(); i++)
 		 {
 			 if (!temp.castVote(candidates.get(i), i))
@@ -117,6 +131,7 @@ public class Election implements Serializable{
 		 }
 		
 		 voteSystem = temp;
+		 loggedInVoter.setVoted(true);
 		 
 		 return true;
 	}
@@ -131,7 +146,7 @@ public class Election implements Serializable{
 		
 		Voter temp = voters.checkVoter(firstName, lastName, DoB, postcode);
 		
-		if(temp != null)
+		if(temp != null && loggedInVoter != temp)
 		{
 			loggedInVoter = temp;
 			return true;
@@ -185,9 +200,6 @@ public class Election implements Serializable{
 	{
 		return electionID;
 	}
-	
-	public List<BallotItem> getBallotItems()
-	{return candidates;}
 
 	
 }
