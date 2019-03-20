@@ -23,26 +23,20 @@ public class PageConfirmationController4 {
 
     @FXML
     private Button logoutButton;
-
-    @FXML
-    void handleConfirmButtonAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleLogoutButtonAction(ActionEvent event) {
-
-    }
-
-	public void initManager(SystemManager systemManager) {
-		
+    
+    /**
+     * Method for handling actions in the Confirmation page
+     */
+	public void initManager(SystemManager systemManager) 
+	{
+		//Set list of user selected candidates
 		selectedVotesList.setItems(FXCollections.observableArrayList(getCandidateNames(systemManager.selectedCandidates)));
 		
-		
-		confirmButton.setOnAction(new EventHandler<ActionEvent>() {
-		      @Override public void handle(ActionEvent event) {
-		        String sessionID = "yes";
-		        if (sessionID != null) {
+		//Handle click for "Confirm" button
+		confirmButton.setOnAction(new EventHandler<ActionEvent>()
+		{
+		      @Override public void handle(ActionEvent event) 
+		      {
 		        	
 		        	for(BallotItem item : systemManager.selectedCandidates)
 		        		systemManager.selectedElection.castVote(item);
@@ -51,20 +45,24 @@ public class PageConfirmationController4 {
 		        	systemManager.selectedCandidates.clear();
 		        	
 		        	systemManager.showPageCompleted5();
-		        }
+		        
 		      }
 		    });
-		logoutButton.setOnAction(new EventHandler<ActionEvent>() {
-		      @Override public void handle(ActionEvent event) {
-		        String sessionID = "yes";
-		        if (sessionID != null) {
-		        	systemManager.selectedElection = null;
-		        	systemManager.showPageElection1();
-		        }
+		
+		logoutButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		      @Override public void handle(ActionEvent event) 
+		      {
+		    	  systemManager.selectedElection = null;
+		    	  systemManager.showPageElection1();
 		      }
-		    });
+		});
+		
 	}
 	
+	/**
+	 * Returns candidate names from a list of candidates
+	 */
 	private ArrayList<String> getCandidateNames(ArrayList<BallotItem> candidates)
 	{
 		ArrayList<String> temp = new ArrayList<>();

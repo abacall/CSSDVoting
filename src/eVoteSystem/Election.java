@@ -68,7 +68,7 @@ public class Election implements Serializable{
 	 *
 	 *@return		true if user can be validated, false if not
 	 */
-	public boolean validateUser(String firstName, String lastName,String DoB , String postcode)
+	public boolean validateUser(String firstName, String lastName, String DoB , String postcode)
 	{
 		if(voters.checkVoter(firstName, lastName, DoB, postcode) != null)
 		{
@@ -86,14 +86,27 @@ public class Election implements Serializable{
 	 */
 	public boolean castVote(BallotItem candidate)
 	{
+		//Creates a temporary VotingSystem for manipulation
 		FirstPastPost temp = (FirstPastPost) voteSystem;
 		
-		 if( temp.castVote(candidate))
-		 {
-			 voteSystem = temp;
-			 loggedInVoter = null;
-			 return true;
+		//Checks that a user is logged in and hasn't voted
+		if (loggedInVoter != null && loggedInVoter.checkVoted()) {
+			errorMessage = "Voter has already voted.";
+			return false;
+		} else if (loggedInVoter == null) {
+			//Sets error message if user is not logged in
+			errorMessage = "A voter has yet to log in";
+			return false;
+		} else if (temp.castVote(candidate)) {
+			//Sets temp VotingSystem back
+			voteSystem = temp;
+			//Flags that the logged in user has voted
+			loggedInVoter.setVoted(true);
+			//Logs user out
+			loggedInVoter = null;
+			return true;
 		 } else {
+			 //Set error message if casting the vote fails
 			 errorMessage = "Failed to cast vote.";
 			 return false;
 		 }
@@ -109,6 +122,14 @@ public class Election implements Serializable{
 	{
 		InstantRunOff temp = (InstantRunOff) voteSystem;
 		
+		if (loggedInVoter != null && loggedInVoter.checkVoted()) {
+			errorMessage = "Voter has already voted.";
+			return false;
+		} else if (loggedInVoter == null) {
+			errorMessage = "A voter has yet to log in";
+			return false;
+		} 
+		
 		 for(int i = 0; i < candidates.size(); i++)
 		 {
 			 if (!temp.castVote(candidates.get(i), i))
@@ -117,6 +138,7 @@ public class Election implements Serializable{
 		 }
 		
 		 voteSystem = temp;
+		 loggedInVoter.setVoted(true);
 		 
 		 return true;
 	}
@@ -130,8 +152,8 @@ public class Election implements Serializable{
 	{
 		
 		Voter temp = voters.checkVoter(firstName, lastName, DoB, postcode);
-		
-		if(temp != null)
+		//Validate if user is eligible to vote
+		if(temp != null && loggedInVoter != temp)
 		{
 			loggedInVoter = temp;
 			return true;
@@ -147,6 +169,7 @@ public class Election implements Serializable{
 	 */
 	public boolean adminLogin(String username, String password)
 	{
+		//Checks each administrator and attempts log in
 		for(Administrator current : administrators)
 		{
 			if(current.getUserName().equals(username))
@@ -185,9 +208,6 @@ public class Election implements Serializable{
 	{
 		return electionID;
 	}
-	
-	public List<BallotItem> getBallotItems()
-	{return candidates;}
 
 	
 }

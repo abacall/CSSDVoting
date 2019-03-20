@@ -12,19 +12,24 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Class for manipulating data 
+ */
 public class DataHandler {
 
 	String filename =  "elections.save";
 	
+	/**
+	 * Saves the of list of elections 
+	 */
 	public void saveData(List<Election> election)
 	{
 		try
-        {    
-            //Saving of object in a file 
+        {   
             FileOutputStream file = new FileOutputStream(filename); 
             ObjectOutputStream out = new ObjectOutputStream(file); 
               
-            // Method for serialization of object 
+             
             out.writeObject(election); 
               
             out.close(); 
@@ -40,6 +45,9 @@ public class DataHandler {
         }
 	}
 	
+	/**
+	 * Loads the of list of elections 
+	 */
 	public List<Election> loadData()
 	{
 		List<Election> returnList = new ArrayList<>();
@@ -68,6 +76,9 @@ public class DataHandler {
 		return returnList;
 	}
 	
+	/**
+	 * Returns a populated First Past the Post election
+	 */
 	public static Election generateSampleDataFirstPastPost() throws ParseException
 	{
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -105,6 +116,9 @@ public class DataHandler {
 		
 	}
 	
+	/**
+	 * Returns a populated Instant Run-Off election
+	 */
 	public static Election generateSampleDataInstantRunOff() throws ParseException
 	{
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");

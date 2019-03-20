@@ -21,14 +21,18 @@ public class PageCompletedController5 {
     @FXML
     private Label currrentUserLabel;
 
-	public void initManager(SystemManager systemManager) {
-		logoutButton.setOnAction(new EventHandler<ActionEvent>() {
-		      @Override public void handle(ActionEvent event) {
-		        String sessionID = "yes";
-		        if (sessionID != null) {
-		        	systemManager.selectedElection = null;
-		        	systemManager.showPageElection1();
-		        }
+    /**
+     * Class for handling actions in the Completed Page
+     */
+	public void initManager(SystemManager systemManager) 
+	{
+		//Handle click for "Log Out" button
+		logoutButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		      @Override public void handle(ActionEvent event) 
+		      {
+		    	  systemManager.selectedElection = null;
+		    	  systemManager.showPageElection1();
 		      }
 		    });
 	}
