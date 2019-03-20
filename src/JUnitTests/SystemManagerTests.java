@@ -5,8 +5,11 @@ import static org.junit.Assert.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.ParseException;
 
+import eVoteSystem.DataHandler;
 import eVoteSystem.SystemManager;
+import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -32,9 +35,12 @@ public class SystemManagerTests {
 	}
 	
 	@Test
-	public void voteSelectionTest () throws IOException {
+	public void voteSelectionTest () throws IOException, ParseException {
 		// Test constructor for page type, make sure no exceptions are thrown
 		SystemManager sys = createSystemManager("Page_Vote_Selection_3.fxml");	
+		
+		sys.selectedElection = DataHandler.generateSampleDataFirstPastPost();
+		
 		// Test function for page type, make sure no exceptions are thrown
 		sys.showPageSelection3();
 	}
@@ -64,6 +70,7 @@ public class SystemManagerTests {
 	}
 	
 	private SystemManager createSystemManager(String page) throws IOException {
+		JFXPanel fxPanel = new JFXPanel();
 		FXMLLoader loader = new FXMLLoader(
 		        new File(page).toURI().toURL());
 		Parent root = loader.load();
