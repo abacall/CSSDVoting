@@ -32,6 +32,9 @@ public class SystemManager {
 		  showPageElection1();
 	  }
 
+	  /**
+	   * Shows Election page
+	   */
 	  public void showPageElection1() {
 	    try {
 	      FXMLLoader loader = new FXMLLoader(
@@ -48,6 +51,9 @@ public class SystemManager {
 	    }
 	  }
 
+	  /**
+	   * Shows Login page
+	   */
 	  public void showPageLogin2() {
 		    try {
 		      FXMLLoader loader = new FXMLLoader(
@@ -63,6 +69,9 @@ public class SystemManager {
 		    }
 		  }
 
+	  /**
+	   * Shows Candidate Selection page
+	   */
 	  public void showPageSelection3() {
 		    try {
 		      FXMLLoader loader = new FXMLLoader(
@@ -78,6 +87,9 @@ public class SystemManager {
 		    }
 		  }
 
+	  /**
+	   * Shows Confirmation page
+	   */
 	  public void showPageConfirmation4() {
 		    try {
 		      FXMLLoader loader = new FXMLLoader(
@@ -93,6 +105,9 @@ public class SystemManager {
 		    }
 		  }
 
+	  /**
+	   * Shows Completed page
+	   */
 	  public void showPageCompleted5() {
 		    try {
 		      FXMLLoader loader = new FXMLLoader(
@@ -108,6 +123,9 @@ public class SystemManager {
 		    }
 		  }
 
+	  /**
+	   * Shows Admin page
+	   */
 	  public void showPageAdmin() {
 		    try {
 		      FXMLLoader loader = new FXMLLoader(
@@ -123,7 +141,15 @@ public class SystemManager {
 		    }
 		  }
 
-	  public boolean validateThingie(String firstName, String lastName, String DoB, String postcode){
+	  /**
+	   * Validates user.
+	   * 
+	   * @param firstName	First Name
+	   * @param lastName	Last Name
+	   * @param DoB			Date of birth in "dd-mm-yyy" format
+	   * @param postcode	Postcode with no spaces
+	   */
+	  public boolean validateUser(String firstName, String lastName, String DoB, String postcode){
 		 return this.selectedElection.validateUser(firstName, lastName, DoB, postcode);
 	  }
 

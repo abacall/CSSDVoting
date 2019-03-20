@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 
 public class PageAdminController {
 
-	  @FXML
+	  	@FXML
 	    private Label electionNameLabel;
 
 	    @FXML
@@ -34,29 +34,35 @@ public class PageAdminController {
 	    @FXML
 	    private Button loginButton;
 
-	public void initManager(SystemManager systemManager) {
-		
-		logoutButton.setOnAction(new EventHandler<ActionEvent>() {
-		      @Override public void handle(ActionEvent event) {
-		        String sessionID = "yes";
-		        if (sessionID != null) {
-		        	systemManager.showPageElection1();
-		        }
-		      }
+	    /**
+	     * Class for handling actions in the Admin Panel
+	     */
+	    public void initManager(SystemManager systemManager) 
+	    {
+	    	//Handles click for the "LogOut" button
+	    	logoutButton.setOnAction(new EventHandler<ActionEvent>() 
+	    	{
+	    		@Override public void handle(ActionEvent event) 
+	    		{
+	    			systemManager.showPageElection1();
+	    		}
 		    });
-
-		loginButton.setOnAction(new EventHandler<ActionEvent>() {
-		      @Override public void handle(ActionEvent event) {
-		        String sessionID = "yes";
-		        if (sessionID != null) {
-//		        	systemManager.showPageElection1();
+	    	
+	    	//Handles click for the "Login" button
+	    	loginButton.setOnAction(new EventHandler<ActionEvent>() 
+	    	{
+	    		@Override public void handle(ActionEvent event) 
+	    		{
+		        	//Get text from username and password fields
 		        	String username = passwordText.getText();
 		        	String password = usernameText.getText();
 		        	
+		        	//Checks admin credentials 
 		        	if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin"))
 		        	{
 		        			ArrayList<String> voteText = new ArrayList<>(); 
-		        		
+		        			
+		        			//Collects the votes from each candidate
 		        			for(BallotItem item : systemManager.selectedElection.returnCandidates())
 		        			{
 		        				String name = item.getName();
@@ -67,13 +73,9 @@ public class PageAdminController {
 
 		        			adminListView.setItems(FXCollections.observableArrayList(voteText));
 		        	}
-		        	
-		        	
-		        	
 		        }
-		      }
 		    });
-	}
+	    }
 
 
 }
