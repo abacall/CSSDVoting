@@ -25,7 +25,7 @@ public class BallotItemTests {
 	public void partyGettersTest() {
 		Party party = new Party("Conservatives");
 		// Test party name was set correctly
-		assertTrue(party.getPartyName() == "Conservatives");
+		assertTrue(party.getName() == "Conservatives");
 	}
 	
 	@Test

@@ -1,24 +1,14 @@
 package eVoteSystem;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.text.ParseException;
 import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class PageElectionController1 {
 	
@@ -38,24 +28,27 @@ public class PageElectionController1 {
 
     public void initialize() {}
 
-
+    /**
+     * Method for handling actions in the Election page
+     */
 	public void initManager(SystemManager systemManager) {
 		
 		
 		this.systemManager = systemManager;
-		confirmButton.setOnAction(new EventHandler<ActionEvent>() {
-		      @Override public void handle(ActionEvent event) {
-		        String sessionID = "yes";
-		        if (sessionID != null) {
-		        	String electionName = electionsList.getSelectionModel().getSelectedItem();
-		        	systemManager.selectedElection = getElection(electionName);
-		        	systemManager.showPageLogin2();
-		        }
+		confirmButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		      @Override public void handle(ActionEvent event) 
+		      {
+		    	  //Get selected election from list
+		    	  String electionName = electionsList.getSelectionModel().getSelectedItem();
+		    	  //Set selected election
+		    	  systemManager.selectedElection = getElection(electionName);
+		    	  systemManager.showPageLogin2();
 		      }
-		    });
+		});
 		
-		
-		if(systemManager.elections.size() < 2)
+		//If there are no elections then generate sample data
+		if(systemManager.elections.size() == 0)
 		{
 			try {
 				systemManager.elections.add(DataHandler.generateSampleDataFirstPastPost());
@@ -70,6 +63,9 @@ public class PageElectionController1 {
 		
 	}
 	
+	/**
+	 * Gets election names from SystemManager
+	 */
 	private ArrayList<String> getElectionNames()
 	{
 		ArrayList<String> temp = new ArrayList<>();
@@ -82,6 +78,9 @@ public class PageElectionController1 {
 		return temp;
 	}
 	
+	/**
+	 * Gets election based on name
+	 */
 	private Election getElection(String name)
 	{
 		for(Election item : systemManager.elections)

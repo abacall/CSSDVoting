@@ -44,8 +44,11 @@ public class ElectoralRoll {
 	 *
 	 * @return      voter if the information provided can be verified as existing, else returns null
 	 */
-	public Voter getVoter(String firstName, String lastName, String doB, String postcode) {
-		for (int i = 0; i < voters.size(); i++) {
+	public Voter getVoter(String firstName, String lastName, String doB, String postcode) 
+	{
+		//Checks passed in details against all registered voters
+		for (int i = 0; i < voters.size(); i++) 
+		{
 			Map<String, String> voterDetails = voters.get(i).getVoterDetails();
 			if (voterDetails.get("FirstName").equalsIgnoreCase(firstName) &&
 				voterDetails.get("LastName").equalsIgnoreCase(lastName)&&

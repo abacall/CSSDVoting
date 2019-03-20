@@ -11,7 +11,14 @@ public class Voter {
 	private String dateOfBirth;
 	private boolean hasVoted;
 	
-	// Constructor for the class, all voter information is passed through as parameters
+	/**
+	 *  Constructor for the class, all voter information is passed through as parameters
+	 * @param vI	VoterID
+	 * @param fN	First Name
+	 * @param lN	Last Name
+	 * @param pC	Postcode
+	 * @param dOB	Date of birth
+	 */
 	public Voter(String vI, String fN, String lN, String pC, String dOB) {
 		voterId = vI;
 		firstName = fN;
@@ -21,8 +28,11 @@ public class Voter {
 		hasVoted = false;
 	}
 	
-	// Returns a map containing the details of the voter
-	// Map is used for ease of access, no need to do a getter for each detail
+	/**
+	 *  Returns a map containing the details of the voter
+	 *  Map is used for ease of access, no need to do a getter for each detail
+	 * 
+	 */
 	public Map<String, String> getVoterDetails() {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("VoterId", voterId);
@@ -33,11 +43,18 @@ public class Voter {
 		return map;
 	}
 	
+	/**
+	 * Sets voted variable
+	 * @param voted
+	 */
 	public void setVoted(boolean voted) {
 		hasVoted = voted;
 	}
 	
-	// Returns if the user has voted yet or not
+	/**
+	 * Returns if the user has voted yet or not
+	 * 
+	 */
 	public boolean checkVoted() {
 		return hasVoted;
 	}
