@@ -5,13 +5,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
-import java.util.HashMap;
-
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 public class AdminPassword {
-		HashMap<String, String> store = new HashMap<>();
 		
 		/**
 		 * Stores a secure hash of password
@@ -22,11 +19,11 @@ public class AdminPassword {
 		 * @throws NoSuchProviderException
 		 * @throws InvalidKeySpecException 
 		 */
-		public void storeUser(String username, String password) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException
+		public static String generateHash(String password) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException
 		{
-	        String securePassword = getSecurePassword(password);
+	        return getSecurePassword(password);
 	        
-	        store.put(username, securePassword);
+	        
 		}
 		
 		/**
@@ -39,20 +36,16 @@ public class AdminPassword {
 		 * @throws NoSuchProviderException
 		 * @throws InvalidKeySpecException 
 		 */
-		public boolean validateUser(String username, String passwordIn) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException
+		public static boolean validatePassword(String storedPassword ,String passwordIn) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException
 		{
-			//
-			String storedPassword = store.get(username);
 			
-			if(storedPassword != null)
-	        {
 				//Seperate 
 				String[] parts = storedPassword.split(":");
 				int numOfIterations = Integer.parseInt(parts[0]);
 				byte[] salt = fromHex(parts[1]);
 				byte[] hash = fromHex(parts[2]);
 	        
-	        	PBEKeySpec spec = new PBEKeySpec(passwordIn.toCharArray(), salt, numOfIterations, hash.length * 8);
+	        	PBEKeySpec spec = new PBEKeySpec(passwordIn.toCharArray(), salt, numOfIterations, 64 * 8);
 	        	SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
 	        	byte[] testHash = skf.generateSecret(spec).getEncoded();
 	         
@@ -62,10 +55,8 @@ public class AdminPassword {
 	            	diff |= hash[i] ^ testHash[i];
 	        	}
 	        	return diff == 0;
-	        }
 	        
-	        return false;
-	        
+	      
 		}
 		
 		/**
@@ -83,7 +74,7 @@ public class AdminPassword {
 	        int numOfIterations = 1000;
 	        byte[] salt = getSalt();
 	         
-	        PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, numOfIterations);
+	        PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, numOfIterations, 64 * 8);
 	        SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
 	        byte[] hash = skf.generateSecret(spec).getEncoded();
 	        return numOfIterations + ":" + toHex(salt) + ":" + toHex(hash);

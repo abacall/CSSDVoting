@@ -32,6 +32,16 @@ public class Election implements Serializable{
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.voters = voters;
+		administrators = new ArrayList<>();
+	}
+	
+	/**
+	 * Add an administrator
+	 * @param adminIn
+	 */
+	public void addAdministrator(Administrator adminIn)
+	{
+		administrators.add(adminIn);
 	}
 	
 	/**

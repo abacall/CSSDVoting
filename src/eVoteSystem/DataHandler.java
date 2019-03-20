@@ -95,6 +95,7 @@ public class DataHandler {
 		candidates.add(new Candidate("cand3","David","Fence",new Party("Green")));
 		
 		
+		
 		VotingSystem voteSystem = new FirstPastPost(candidates);
 		Date startTime = dateFormat.parse(startDateStr);
 		Date endTime = dateFormat.parse(endDateStr);
@@ -111,6 +112,10 @@ public class DataHandler {
 		ElectoralRoll er = new ElectoralRoll(voters);
 		
 		Election sample = new Election(electionID, electionName, candidates, voteSystem, startTime, endTime, er);
+		
+		Administrator admin = new Administrator("admin","admin");
+		
+		sample.addAdministrator(admin);
 		
 		return sample;
 		

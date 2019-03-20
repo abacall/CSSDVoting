@@ -1,4 +1,7 @@
 package eVoteSystem;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +24,13 @@ public class Administrator {
 	 */
 	public Administrator(String uN, String pass) {
 		userName = uN;
-		password = pass;
+		
+		try {
+			password = AdminPassword.generateHash(pass);
+		} catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidKeySpecException e) {
+			e.printStackTrace();
+		}
+		
 		actionLog = new ArrayList<String>();
 	}
 	
@@ -29,10 +38,17 @@ public class Administrator {
 	 * Validates an administrator based on username and password
 	 */
 	public boolean validateUser(String uN, String pass) {
-		if((uN.equals(userName))&&(pass.equals(password)))
-			return true;
-		else
-			return false;
+		
+		boolean validUsername = uN.equals(userName);
+		boolean validPassword = false;
+		
+		try {
+			validPassword = AdminPassword.validatePassword(password, pass);
+		} catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidKeySpecException e) {
+			e.printStackTrace();
+		}
+		
+		return (validUsername && validPassword);
 	}
 	
 	/**

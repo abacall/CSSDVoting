@@ -58,7 +58,7 @@ public class PageAdminController {
 		        	String password = usernameText.getText();
 		        	
 		        	//Checks admin credentials 
-		        	if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin"))
+		        	if(systemManager.selectedElection.adminLogin(username, password))
 		        	{
 		        			ArrayList<String> voteText = new ArrayList<>(); 
 		        			
