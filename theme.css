@@ -57,6 +57,10 @@
 
 }
 
+.list-cell{
+    -fx-font-size:32.0;
+}
+
 .label{
 	-fx-text-fill: -colour-text;
 	-fx-font-size: 32px;
