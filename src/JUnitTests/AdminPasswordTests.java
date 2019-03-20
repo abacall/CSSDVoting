@@ -25,7 +25,7 @@ public class AdminPasswordTests {
 		assertFalse(AdminPassword.validatePassword(hash, "pleaseWork"));
 	}
 	
-	
+	@Test
 	public void administratorIntegrationTest()
 	{
 		String testUsername = "testUsername";
