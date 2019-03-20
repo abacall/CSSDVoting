@@ -54,12 +54,12 @@
       <AnchorPane layoutX="139.0" layoutY="88.0" styleClass="component2">
          <children>
             <ListView fx:id="selectedVotesList" layoutX="19.0" layoutY="61.0" prefHeight="279.0" prefWidth="984.0" style="-fx-background-color: gray; -fx-border-color: black;" />
-            <Button id="confirmButton" fx:id="confirmButton" layoutX="290.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleConfirmButtonAction" prefHeight="100.0" prefWidth="420.0" styleClass="button1" text="Confirm">
+            <Button id="confirmButton" fx:id="confirmButton" layoutX="290.0" layoutY="365.0" mnemonicParsing="false"  prefHeight="100.0" prefWidth="420.0" styleClass="button1" text="Confirm">
                <font>
                   <Font size="40.0" />
                </font>
             </Button>
-            <Button id="confirmButton" fx:id="logoutButton" layoutX="401.0" layoutY="502.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="28.0" prefWidth="198.0" styleClass="button1" text="Logout" textAlignment="CENTER">
+            <Button id="confirmButton" fx:id="logoutButton" layoutX="401.0" layoutY="502.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="198.0" styleClass="button1" text="Logout" textAlignment="CENTER">
                <font>
                   <Font size="32.0" />
                </font>
