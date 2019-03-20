@@ -11,7 +11,7 @@ import eVoteSystem.Party;
 
 import org.junit.Test;
 
-public class InstantRunOffUnitTests {
+public class InstantRunOffTests {
 
 	@Test
 	public void iROCorrectConstructTest() {
