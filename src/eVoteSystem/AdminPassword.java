@@ -26,7 +26,7 @@ public class AdminPassword {
 	        //Get random salt
 	        byte[] salt = getSalt();
 			//Get hash
-	        byte[] hash = getSecurePassword(password, numOfIterations, salt);
+	        byte[] hash = getHash(password, numOfIterations, salt);
 	        //Return hash with meta data	
 	        return numOfIterations + ":" + toString(salt) + ":" + toString(hash);
 	        
@@ -56,7 +56,7 @@ public class AdminPassword {
 				byte[] hash = fromString(parts[2]);
 	        
 	        	//Generate hash for passed in password
-	        	byte[] testHash = getSecurePassword(passwordIn, numOfIterations, salt);//skf.generateSecret(spec).getEncoded();
+	        	byte[] testHash = getHash(passwordIn, numOfIterations, salt);//skf.generateSecret(spec).getEncoded();
 	         
 	        	//Check hash lengths are the same
 	        	boolean diff = hash.length == testHash.length;
@@ -80,7 +80,7 @@ public class AdminPassword {
 		 * @throws NoSuchAlgorithmException 
 		 * @throws InvalidKeySpecException 
 		 */
-	    private static byte[] getSecurePassword(String password, int iterations, byte[] salt) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException
+	    private static byte[] getHash(String password, int iterations, byte[] salt) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException
 	    {
 	    	//Create instance of specification object
 	        PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, 64 * 8);
