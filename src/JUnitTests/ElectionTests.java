@@ -16,6 +16,7 @@ import eVoteSystem.Candidate;
 import eVoteSystem.Election;
 import eVoteSystem.ElectoralRoll;
 import eVoteSystem.FirstPastPost;
+import eVoteSystem.InstantRunOff;
 import eVoteSystem.Party;
 import eVoteSystem.Voter;
 import eVoteSystem.VotingSystem;
@@ -24,7 +25,7 @@ public class ElectionTests {
 	
 	@Test
 	public void electionConstructorTest() throws ParseException {
-		Election el = createElection();
+		Election el = createElection(0);
 		// Check that details are correct
 		assertEquals(el.getName(), "Sample Election First Past Post");
 		assertEquals(el.getElectionID(), "sample_election_FPP");
@@ -39,7 +40,7 @@ public class ElectionTests {
 	
 	@Test
 	public void electionLoginTest() throws ParseException {
-		Election el = createElection();
+		Election el = createElection(0);
 		BallotItem cand1 = el.returnCandidates().get(0);
 		// Make sure no user is logged in from creation
 		assertEquals(el.getLoggedInUser(), null);
@@ -63,7 +64,7 @@ public class ElectionTests {
 	
 	@Test
 	public void electionCandidateTest() throws ParseException {
-		Election el = createElection();
+		Election el = createElection(0);
 		BallotItem cand1 = el.returnCandidates().get(0);
 		BallotItem cand2 = el.returnCandidates().get(1);
 		assertTrue(el.login("Alex","Fox","01-01-1997","S24EG"));
@@ -75,7 +76,7 @@ public class ElectionTests {
 		// Check that vote has been logged
 		assertTrue(el.getVoteCount(cand2).get(0) == 1);
 		// Create a new election so voters can vote in another election
-		el = createElection();
+		el = createElection(0);
 		cand1 = el.returnCandidates().get(0);
 		assertTrue(el.login("Alex","Fox","01-01-1997","S24EG"));
 		el.castVote(cand1);
@@ -87,8 +88,24 @@ public class ElectionTests {
 		assertTrue(el.getVoteCount(cand1).get(0) == 3);
 	}
 	
+	@Test
+	public void electionMultipleTest() throws ParseException {
+		// Check that an election of a different voting type can be created
+		Election el = createElection(1);
+		BallotItem cand1 = el.returnCandidates().get(0);
+		BallotItem cand2 = el.returnCandidates().get(1);
+		BallotItem cand3 = el.returnCandidates().get(2);
+		ArrayList<BallotItem> cands = new ArrayList<BallotItem>();
+		cands.add(cand1);
+		cands.add(cand2);
+		cands.add(cand3);
+		// Check that voter can vote in instant run off elections without issue
+		assertTrue(el.login("Alex","Fox","01-01-1997","S24EG"));
+		assertTrue(el.castVote(cands));
+	}
+	
 	// Function used to create an election class
-	private Election createElection() throws ParseException {
+	private Election createElection(int electionType) throws ParseException {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		String startDateStr = "01-01-2019";
 		String endDateStr = "01-04-2019";
@@ -104,6 +121,7 @@ public class ElectionTests {
 			
 		
 		VotingSystem voteSystem = new FirstPastPost(candidates);
+		VotingSystem voteSystem2 = new InstantRunOff(candidates, 5);
 		Date startTime = dateFormat.parse(startDateStr);
 		Date endTime = dateFormat.parse(endDateStr);
 			
@@ -118,7 +136,13 @@ public class ElectionTests {
 			
 		ElectoralRoll er = new ElectoralRoll(voters);
 			
-		Election sample = new Election(electionID, electionName, candidates, voteSystem, startTime, endTime, er);
+		Election sample;
+		
+		if (electionType == 0) {
+			sample = new Election(electionID, electionName, candidates, voteSystem, startTime, endTime, er);
+		} else {
+			sample = new Election(electionID, electionName, candidates, voteSystem2, startTime, endTime, er);
+		}
 		return sample;
 	}
 

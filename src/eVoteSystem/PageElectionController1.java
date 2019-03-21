@@ -52,7 +52,7 @@ public class PageElectionController1 {
 		{
 			try {
 				systemManager.elections.add(DataHandler.generateSampleDataFirstPastPost());
-				systemManager.elections.add(DataHandler.generateSampleDataInstantRunOff());
+				//systemManager.elections.add(DataHandler.generateSampleDataInstantRunOff());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
