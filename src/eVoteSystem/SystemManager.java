@@ -141,16 +141,5 @@ public class SystemManager {
 		    }
 		  }
 
-	  /**
-	   * Validates user.
-	   * 
-	   * @param firstName	First Name
-	   * @param lastName	Last Name
-	   * @param DoB			Date of birth in "dd-mm-yyy" format
-	   * @param postcode	Postcode with no spaces
-	   */
-	  public boolean validateUser(String firstName, String lastName, String DoB, String postcode){
-		 return this.selectedElection.validateUser(firstName, lastName, DoB, postcode);
-	  }
 
 	}
