@@ -92,7 +92,7 @@ public class Election implements Serializable{
 		
 		Map<String, String> voterDetails = loggedInVoter.getVoterDetails();
 		//Validate user again before casting vote
-		loggedInVoter = voters.checkVoter(voterDetails.get("FirstName"), voterDetails.get("LastName"), voterDetails.get("PostCode"), voterDetails.get("DateOfBirth"));
+		loggedInVoter = voters.checkVoter(voterDetails.get("FirstName"), voterDetails.get("LastName"),  voterDetails.get("DateOfBirth"), voterDetails.get("PostCode"));
 		
 		
 		//Checks that a user is logged in and hasn't voted
@@ -165,11 +165,10 @@ public class Election implements Serializable{
 	 */
 	public boolean login(String firstName, String lastName, String DoB, String postcode)
 	{
-		
-		Voter temp = voters.checkVoter(firstName, lastName, DoB, postcode);
 		//Validate if user is eligible to vote
-		if(temp != null && loggedInVoter != temp)
+		if(validateUser(firstName, lastName, DoB, postcode))
 		{
+			Voter temp = voters.checkVoter(firstName, lastName, DoB, postcode);
 			loggedInVoter = temp;
 			return true;
 		}

@@ -62,7 +62,7 @@ public class PageLoginController2 {
 		    	  
 		    	  if(firstName.equalsIgnoreCase("admin") && lastName.equalsIgnoreCase("admin"))		//Check for admin launch
 		    		  systemManager.showPageAdmin();
-		    	  else if(systemManager.validateUser(firstName, lastName, date, postcode)) 			//Validate user before moving on
+		    	  else if(systemManager.selectedElection.login(firstName, lastName, date, postcode)) 			//Validate user before moving on
 		    		  systemManager.showPageSelection3();
 		    	  else
 		    		  systemManager.showPageElection1();
