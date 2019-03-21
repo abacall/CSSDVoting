@@ -21,13 +21,20 @@ public class AdminPassword {
 		 */
 		public static String generateHash(String password) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException
 		{
-	        return getSecurePassword(password);
+			//Default number of iterations
+	        int numOfIterations = 1000;
+	        //Get random salt
+	        byte[] salt = getSalt();
+			//Get hash
+	        byte[] hash = getSecurePassword(password, numOfIterations, salt);
+	        //Return hash with meta data	
+	        return numOfIterations + ":" + toString(salt) + ":" + toString(hash);
 	        
 	        
 		}
 		
 		/**
-		 * Validates password against passed in hash
+		 * Validates password against passed in hash with metadata
 		 * 
 		 * @param username
 		 * @param passwordIn
@@ -48,13 +55,8 @@ public class AdminPassword {
 				//Stored hash
 				byte[] hash = fromString(parts[2]);
 	        
-				//Create instance of specification object
-	        	PBEKeySpec spec = new PBEKeySpec(passwordIn.toCharArray(), salt, numOfIterations, 64 * 8);
-	        	//Create instance for PBKDF2 algorithm
-	        	SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-	        	
 	        	//Generate hash for passed in password
-	        	byte[] testHash = skf.generateSecret(spec).getEncoded();
+	        	byte[] testHash = getSecurePassword(passwordIn, numOfIterations, salt);//skf.generateSecret(spec).getEncoded();
 	         
 	        	//Check hash lengths are the same
 	        	boolean diff = hash.length == testHash.length;
@@ -78,15 +80,10 @@ public class AdminPassword {
 		 * @throws NoSuchAlgorithmException 
 		 * @throws InvalidKeySpecException 
 		 */
-	    private static String getSecurePassword(String password) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException
+	    private static byte[] getSecurePassword(String password, int iterations, byte[] salt) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException
 	    {
-	    	//Default number of iterations
-	        int numOfIterations = 1000;
-	        //Get random salt
-	        byte[] salt = getSalt();
-	         
-	        //Create instance of specification object
-	        PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, numOfIterations, 64 * 8);
+	    	//Create instance of specification object
+	        PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, 64 * 8);
 	        //Create instance for PBKDF2 algorithm
 	        SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
 	        
@@ -94,7 +91,7 @@ public class AdminPassword {
 	        byte[] hash = skf.generateSecret(spec).getEncoded();
 	        
 	        //Return string with meta-data added
-	        return numOfIterations + ":" + toString(salt) + ":" + toString(hash);
+	        return hash;
 	    }
 	    
 	    /**
