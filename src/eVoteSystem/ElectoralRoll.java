@@ -40,11 +40,11 @@ public class ElectoralRoll {
 	}
 	
 	/**
-	 * Returns a voter given details about said voter.
+	 * Helper that returns a voter given details about said voter.
 	 *
 	 * @return      voter if the information provided can be verified as existing, else returns null
 	 */
-	public Voter getVoter(String firstName, String lastName, String doB, String postcode) 
+	private Voter getVoter(String firstName, String lastName, String doB, String postcode) 
 	{
 		//Checks passed in details against all registered voters
 		for (int i = 0; i < voters.size(); i++) 

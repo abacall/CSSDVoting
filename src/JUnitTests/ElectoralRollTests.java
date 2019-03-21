@@ -30,8 +30,6 @@ public class ElectoralRollTests {
 		assertTrue(eR.checkVoter("John", "Smith", "01/01/1999", "xx xxx") != null);
 		assertTrue(eR.checkVoter("Jack", "Johnson", "01/01/1999", "xx xxx") != null);
 		// Check that the getVoter function responds with the correct voter object
-		assertEquals(eR.getVoter("John", "Smith", "01/01/1999", "xx xxx"), voter1);
-		assertEquals(eR.getVoter("Jack", "Johnson", "01/01/1999", "xx xxx"), voter2);
 	}
 	
 	@Test
