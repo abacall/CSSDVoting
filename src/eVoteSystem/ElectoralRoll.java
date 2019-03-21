@@ -5,13 +5,12 @@ import java.util.Map;
 
 public class ElectoralRoll {
 
-	private List<Voter> voters;
-	
+	private Database db;	
 	/**
 	 * Voters are passed through the constructor to initiate the voter list
 	 */
-	public ElectoralRoll(List<Voter> allVoters) {
-		voters = allVoters;
+	public ElectoralRoll() {
+		db = new Database();
 	}
 	
 	/**
@@ -46,18 +45,7 @@ public class ElectoralRoll {
 	 */
 	public Voter getVoter(String firstName, String lastName, String doB, String postcode) 
 	{
-		//Checks passed in details against all registered voters
-		for (int i = 0; i < voters.size(); i++) 
-		{
-			Map<String, String> voterDetails = voters.get(i).getVoterDetails();
-			if (voterDetails.get("FirstName").equalsIgnoreCase(firstName) &&
-				voterDetails.get("LastName").equalsIgnoreCase(lastName)&&
-				voterDetails.get("PostCode").equalsIgnoreCase(postcode) &&
-				voterDetails.get("DateOfBirth").equalsIgnoreCase(doB)) {
-				return voters.get(i);
-			}
-		}
-		return null;
+		return db.getVoter(firstName, lastName, doB, postcode);
 	}
 	
 	/**
@@ -69,6 +57,18 @@ public class ElectoralRoll {
 		if (voterExists(fN, lN, doB, pC) && !voterHasVoted(fN, lN, doB, pC)) {
 			return getVoter(fN, lN, doB, pC);
 		}
+		//System.out.println("Voter exists?");
+		//System.out.println(voterExists(fN, lN, doB, pC));
+		//System.out.println("Voter voted?");
+		//System.out.println(voterHasVoted(fN, lN, doB, pC));
 		return null;
+	}
+	
+	/**
+	 * Sets a voters vote status to voted.
+	 */
+	public void setVoterHasVoted(Voter voter, boolean voted) {
+		db.setVoterVoted(voter.getVoterDetails().get("FirstName"), voter.getVoterDetails().get("LastName"), 
+				voter.getVoterDetails().get("DateOfBirth"), voter.getVoterDetails().get("PostCode"), voted);
 	}
 }

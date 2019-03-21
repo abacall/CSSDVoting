@@ -1,0 +1,1 @@
+"C:\Program Files\MongoDB\Server\4.0\bin\mongod" --dbpath="C:\Users\Elliot Howard\eclipse-workspace\MongdbTest\src\data" --nojournal

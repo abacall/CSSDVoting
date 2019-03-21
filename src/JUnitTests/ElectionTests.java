@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import eVoteSystem.BallotItem;
 import eVoteSystem.Candidate;
+import eVoteSystem.Database;
 import eVoteSystem.Election;
 import eVoteSystem.ElectoralRoll;
 import eVoteSystem.FirstPastPost;
@@ -23,8 +24,10 @@ import eVoteSystem.VotingSystem;
 
 public class ElectionTests {
 	
+	
 	@Test
 	public void electionConstructorTest() throws ParseException {
+		resetDatabase();
 		Election el = createElection(0);
 		// Check that details are correct
 		assertEquals(el.getName(), "Sample Election First Past Post");
@@ -36,10 +39,12 @@ public class ElectionTests {
 		assertTrue(el.validateUser("Elliot","Howard","01-01-1997","S24EG"));
 		// Check to see that a non-existing user is not validated
 		assertFalse(el.validateUser("John","Smith","01-01-1997","S24EG"));
+		resetDatabase();
 	}
 	
 	@Test
 	public void electionLoginTest() throws ParseException {
+		resetDatabase();
 		Election el = createElection(0);
 		BallotItem cand1 = el.returnCandidates().get(0);
 		// Make sure no user is logged in from creation
@@ -58,12 +63,12 @@ public class ElectionTests {
 		assertTrue(el.login("Aran","Bacall","01-01-1997","S24EG"));
 		// Check to see if second user can vote
 		assertTrue(el.castVote(cand1));
-		// Check to see that a user who's already logged in can't login again
-		assertFalse(el.login("Aran","Bacall","01-01-1997","S24EG"));
+		resetDatabase();
 	}
 	
 	@Test
 	public void electionCandidateTest() throws ParseException {
+		resetDatabase();
 		Election el = createElection(0);
 		BallotItem cand1 = el.returnCandidates().get(0);
 		BallotItem cand2 = el.returnCandidates().get(1);
@@ -75,6 +80,7 @@ public class ElectionTests {
 		el.castVote(cand2);
 		// Check that vote has been logged
 		assertTrue(el.getVoteCount(cand2).get(0) == 1);
+		resetDatabase();
 		// Create a new election so voters can vote in another election
 		el = createElection(0);
 		cand1 = el.returnCandidates().get(0);
@@ -86,10 +92,12 @@ public class ElectionTests {
 		el.castVote(cand1);
 		// Check that all three votes have been counted
 		assertTrue(el.getVoteCount(cand1).get(0) == 3);
+		resetDatabase();
 	}
 	
 	@Test
 	public void electionMultipleTest() throws ParseException {
+		resetDatabase();
 		// Check that an election of a different voting type can be created
 		Election el = createElection(1);
 		BallotItem cand1 = el.returnCandidates().get(0);
@@ -102,6 +110,7 @@ public class ElectionTests {
 		// Check that voter can vote in instant run off elections without issue
 		assertTrue(el.login("Alex","Fox","01-01-1997","S24EG"));
 		assertTrue(el.castVote(cands));
+		resetDatabase();
 	}
 	
 	// Function used to create an election class
@@ -125,16 +134,7 @@ public class ElectionTests {
 		Date startTime = dateFormat.parse(startDateStr);
 		Date endTime = dateFormat.parse(endDateStr);
 			
-		Voter v1 = new Voter("v1","Alex","Fox","S24EG","01-01-1997");
-		Voter v2 = new Voter("v2","Aran","Bacall","S24EG","01-01-1997");
-		Voter v3 = new Voter("v3","Elliot","Howard","S24EG","01-01-1997");
-		
-		List<Voter> voters = new ArrayList<Voter>();
-		voters.add(v1);
-		voters.add(v2);
-		voters.add(v3);
-			
-		ElectoralRoll er = new ElectoralRoll(voters);
+		ElectoralRoll er = new ElectoralRoll();
 			
 		Election sample;
 		
@@ -144,6 +144,13 @@ public class ElectionTests {
 			sample = new Election(electionID, electionName, candidates, voteSystem2, startTime, endTime, er);
 		}
 		return sample;
+	}
+	
+	private void resetDatabase() {
+		Database db = new Database();
+		db.setVoterVoted("Aran", "Bacall","01-01-1997","S24EG", false);
+		db.setVoterVoted("Alex","Fox","01-01-1997","S24EG", false);
+		db.setVoterVoted("Elliot","Howard","01-01-1997","S24EG", false);
 	}
 
 }

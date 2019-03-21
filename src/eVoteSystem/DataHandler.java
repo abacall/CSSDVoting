@@ -99,16 +99,8 @@ public class DataHandler {
 		Date startTime = dateFormat.parse(startDateStr);
 		Date endTime = dateFormat.parse(endDateStr);
 		
-		Voter v1 = new Voter("v1","Alex","Fox","S24EG","01-01-1997");
-		Voter v2 = new Voter("v2","Aran","Bacall","S24EG","01-01-1997");
-		Voter v3 = new Voter("v3","Elliot","Howard","S24EG","01-01-1997");
 		
-		List<Voter> voters = new ArrayList<Voter>();
-		voters.add(v1);
-		voters.add(v2);
-		voters.add(v3);
-		
-		ElectoralRoll er = new ElectoralRoll(voters);
+		ElectoralRoll er = new ElectoralRoll();
 		
 		Election sample = new Election(electionID, electionName, candidates, voteSystem, startTime, endTime, er);
 		
@@ -143,12 +135,7 @@ public class DataHandler {
 		Voter v2 = new Voter("v2","Aran","Bacall","S24EG","01-01-1997");
 		Voter v3 = new Voter("v3","Elliot","Howard","S24EG","01-01-1997");
 		
-		List<Voter> voters = new ArrayList<Voter>();
-		voters.add(v1);
-		voters.add(v2);
-		voters.add(v3);
-		
-		ElectoralRoll er = new ElectoralRoll(voters);
+		ElectoralRoll er = new ElectoralRoll();
 		
 		Election sample = new Election(electionID, electionName, candidates, voteSystem, startTime, endTime, er);
 		

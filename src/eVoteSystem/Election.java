@@ -101,7 +101,7 @@ public class Election implements Serializable{
 			//Sets temp VotingSystem back
 			voteSystem = temp;
 			//Flags that the logged in user has voted
-			loggedInVoter.setVoted(true);
+			voters.setVoterHasVoted(loggedInVoter, true);
 			//Logs user out
 			loggedInVoter = null;
 			return true;
@@ -138,7 +138,8 @@ public class Election implements Serializable{
 		 }
 		
 		 voteSystem = temp;
-		 loggedInVoter.setVoted(true);
+		 voters.setVoterHasVoted(loggedInVoter, true);
+		 loggedInVoter = null;
 		 
 		 return true;
 	}
