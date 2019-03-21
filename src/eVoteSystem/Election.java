@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 public class Election implements Serializable{
@@ -79,6 +80,7 @@ public class Election implements Serializable{
 		}
 	}
 	
+	
 	/**
 	 * Casts a vote for a standing party in first past post system 
 	 * 
@@ -89,23 +91,35 @@ public class Election implements Serializable{
 		//Creates a temporary VotingSystem for manipulation
 		FirstPastPost temp = (FirstPastPost) voteSystem;
 		
+		Map<String, String> voterDetails = loggedInVoter.getVoterDetails();
+		//Validate user again before casting vote
+		loggedInVoter = voters.checkVoter(voterDetails.get("FirstName"), voterDetails.get("LastName"),  voterDetails.get("DateOfBirth"), voterDetails.get("PostCode"));
+		
+		
 		//Checks that a user is logged in and hasn't voted
-		if (loggedInVoter != null && loggedInVoter.checkVoted()) {
-			errorMessage = "Voter has already voted.";
+		if (loggedInVoter != null) {
+			
+			boolean validVote = temp.castVote(candidate);
+			
+			if(validVote)
+			{
+				//Sets temp VotingSystem back
+				voteSystem = temp;
+				//Flags that the logged in user has voted
+				loggedInVoter.setVoted(true);
+				//Flags that the logged in user has voted
+				voters.setVoterHasVoted(loggedInVoter, true);
+				//Logs user out
+				loggedInVoter = null;
+				return true;
+			}
+			
 			return false;
 		} else if (loggedInVoter == null) {
 			//Sets error message if user is not logged in
-			errorMessage = "A voter has yet to log in";
+			errorMessage = "Invalid user";
 			return false;
-		} else if (temp.castVote(candidate)) {
-			//Sets temp VotingSystem back
-			voteSystem = temp;
-			//Flags that the logged in user has voted
-			voters.setVoterHasVoted(loggedInVoter, true);
-			//Logs user out
-			loggedInVoter = null;
-			return true;
-		 } else {
+		} else  {
 			 //Set error message if casting the vote fails
 			 errorMessage = "Failed to cast vote.";
 			 return false;
@@ -122,7 +136,11 @@ public class Election implements Serializable{
 	{
 		InstantRunOff temp = (InstantRunOff) voteSystem;
 		
-		if (loggedInVoter != null && loggedInVoter.checkVoted()) {
+		Map<String, String> voterDetails = loggedInVoter.getVoterDetails();
+		//Validate user again before casting vote
+		loggedInVoter = voters.checkVoter(voterDetails.get("FirstName"), voterDetails.get("LastName"), voterDetails.get("PostCode"), voterDetails.get("DateOfBirth"));
+		
+		if (loggedInVoter != null) {
 			errorMessage = "Voter has already voted.";
 			return false;
 		} else if (loggedInVoter == null) {
@@ -138,8 +156,10 @@ public class Election implements Serializable{
 		 }
 		
 		 voteSystem = temp;
-		 voters.setVoterHasVoted(loggedInVoter, true);
-		 loggedInVoter = null;
+		 loggedInVoter.setVoted(true);
+		//Flags that the logged in user has voted
+		voters.setVoterHasVoted(loggedInVoter, true);
+		loggedInVoter = null;
 		 
 		 return true;
 	}
@@ -151,11 +171,10 @@ public class Election implements Serializable{
 	 */
 	public boolean login(String firstName, String lastName, String DoB, String postcode)
 	{
-		
-		Voter temp = voters.checkVoter(firstName, lastName, DoB, postcode);
 		//Validate if user is eligible to vote
-		if(temp != null && loggedInVoter != temp)
+		if (validateUser(firstName, lastName, DoB, postcode))
 		{
+			Voter temp = voters.checkVoter(firstName, lastName, DoB, postcode);
 			loggedInVoter = temp;
 			return true;
 		}

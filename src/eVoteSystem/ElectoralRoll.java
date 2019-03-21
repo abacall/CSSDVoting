@@ -57,10 +57,6 @@ public class ElectoralRoll {
 		if (voterExists(fN, lN, doB, pC) && !voterHasVoted(fN, lN, doB, pC)) {
 			return getVoter(fN, lN, doB, pC);
 		}
-		//System.out.println("Voter exists?");
-		//System.out.println(voterExists(fN, lN, doB, pC));
-		//System.out.println("Voter voted?");
-		//System.out.println(voterHasVoted(fN, lN, doB, pC));
 		return null;
 	}
 	
